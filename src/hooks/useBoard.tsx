@@ -21,5 +21,5 @@ export const useBoard = () => {
   ];
   const newMaze: number[][] = JSON.parse(JSON.stringify(maze));
 
-  return { maze, setMaze, directions, newMaze};
+  return { maze, setMaze, directions, newMaze };
 };

@@ -39,6 +39,7 @@ export const useGame = () => {
     iterateBoard(pillarcount);
     if (pillar === 0) {
       iterateBoard(Itteme);
+      newMaze[0][0] = 3;
       iterateBoard(allOne);
     }
   };
