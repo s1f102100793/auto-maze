@@ -6,7 +6,14 @@ const Home = () => {
   console.table(maze);
   return (
     <div className={styles.container}>
-      <div className={styles.board} onClick={onClick} />
+      <div className={styles.board} onClick={onClick}>
+        {maze.map((row, yIndex) => {
+          return row.map((col, xIndex) => {
+            const cellStyle = col === 0 ? styles['cell-white'] : styles['cell-black'];
+            return <div key={`cell-${yIndex}-${xIndex}`} className={cellStyle} />;
+          });
+        })}
+      </div>
     </div>
   );
 };

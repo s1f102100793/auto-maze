@@ -17,3 +17,23 @@
   height: 540px;
   background-color: #c6c6c6;
 }
+
+.cell-white {
+  width: 60px;
+  height: 60px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  background-color: #ccc;
+  justify-content: center;
+}
+
+.cell-black {
+  width: 60px;
+  height: 60px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  background-color: #f5f;
+  justify-content: center;
+}

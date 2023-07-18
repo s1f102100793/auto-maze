@@ -28,10 +28,20 @@ export const useGame = () => {
     }
   };
 
-  const onClick = () => {
-    iterateBoard(Itteme);
-    iterateBoard(allOne);
+  let pillar = 0;
+  const pillarcount = (y: number, x: number) => {
+    if (maze[y][x] === 1) {
+      pillar++;
+    }
   };
-  
+
+  const onClick = () => {
+    iterateBoard(pillarcount);
+    if (pillar === 0) {
+      iterateBoard(Itteme);
+      iterateBoard(allOne);
+    }
+  };
+
   return { maze, setMaze, onClick };
 };
