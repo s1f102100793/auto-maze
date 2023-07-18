@@ -1,8 +1,10 @@
 import { useGame } from '../hooks/useGame';
+import { useHuman } from '../hooks/useHuman';
 import styles from './index.module.css';
 
 const Home = () => {
-  const { maze, onClick } = useGame();
+  const { maze, onClick, onSearchClick } = useGame();
+  // const { onSearchClick } = useHuman();
   console.table(maze);
   return (
     <div className={styles.container}>
@@ -17,6 +19,9 @@ const Home = () => {
       </div>
       <button className={styles.generation} onClick={onClick}>
         生成
+      </button>
+      <button className={styles.search} onClick={onSearchClick}>
+        探索
       </button>
     </div>
   );

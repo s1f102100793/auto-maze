@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useBoard } from './useBoard';
 
 export const useGame = () => {
@@ -44,5 +45,44 @@ export const useGame = () => {
     }
   };
 
-  return { maze, setMaze, onClick };
+  const [human, setHuman] = useState(0);
+  const direction = directions[human % 4];
+  const nextdirection = directions[(human + 1) % 4];
+
+  const searchCell = (y: number, x: number) => {
+    console.log('searchしたとき');
+    console.table(maze);
+    if (
+      maze[y][x] === 3 &&
+      maze[y + direction[0]] !== undefined &&
+      maze[x + direction[1]] !== undefined &&
+      maze[y + direction[0]][x + direction[1]] === 0 &&
+      maze[y + nextdirection[0]][x + nextdirection[1]] === 1
+    ) {
+      newMaze[y][x] = 0;
+      newMaze[y + direction[0]][x + direction[1]] = 4;
+      setMaze(newMaze);
+    } else {
+      if (human === 3) {
+        setHuman(0);
+      } else {
+        console.log('回転した');
+        setHuman(human + 1);
+      }
+    }
+  };
+
+  const changeThreeToFour = (y: number, x: number) => {
+    if (newMaze[y][x] === 4) {
+      newMaze[y][x] = 3;
+      setMaze(newMaze);
+    }
+  };
+
+  const onSearchClick = () => {
+    iterateBoard(searchCell);
+    iterateBoard(changeThreeToFour);
+  };
+
+  return { maze, setMaze, onClick, iterateBoard, onSearchClick };
 };
