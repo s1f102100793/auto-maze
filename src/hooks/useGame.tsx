@@ -30,20 +30,16 @@ export const useGame = () => {
     }
   };
 
-  let pillar = 0;
-  const pillarcount = (y: number, x: number) => {
-    if (maze[y][x] === 1) {
-      pillar++;
-    }
+  const allZero = (y: number, x: number) => {
+    newMaze[y][x] = 0;
+    setMaze(newMaze);
   };
 
   const onClick = () => {
-    iterateBoard(pillarcount);
-    if (pillar === 0) {
-      iterateBoard(Itteme);
-      newMaze[0][0] = 3;
-      iterateBoard(allOne);
-    }
+    iterateBoard(allZero);
+    iterateBoard(Itteme);
+    newMaze[0][0] = 3;
+    iterateBoard(allOne);
   };
 
   const [human, setHuman] = useState(0);
