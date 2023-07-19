@@ -96,7 +96,8 @@ export const useGame = () => {
       if (
         undefinedCheck(y, x) &&
         maze[y + direction[0]][x + direction[1]] === 4 &&
-        maze[y + nextdirection[0]][x + nextdirection[1]] === 1
+        (maze[y + nextdirection[0]][x + nextdirection[1]] === 1 ||
+          maze[y + nextdirection[0]][x + nextdirection[1]] === undefined)
       ) {
         changeBoard(y, x);
       } else {
