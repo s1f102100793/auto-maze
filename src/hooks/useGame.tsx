@@ -45,6 +45,7 @@ export const useGame = () => {
   const [human, setHuman] = useState(0);
   const direction = directions[human % 4];
   const nextdirection = directions[(human + 1) % 4];
+  const backdirection = directions[(human + 2) % 4];
   console.log('direction', direction);
   console.log('nextdirection', nextdirection);
 
@@ -57,46 +58,55 @@ export const useGame = () => {
   };
 
   const changeBoard = (y: number, x: number) => {
-    newMaze[y][x] = 0;
-    newMaze[y + direction[0]][x + direction[1]] = 4;
+    newMaze[y][x] = 4;
+    newMaze[y + direction[0]][x + direction[1]] = 3;
     setMaze(newMaze);
     serchcount++;
   };
 
-  console.log('serchcount', serchcount);
-  const searchCell = (y: number, x: number) => {
-    if (serchcount === 0 && maze[y][x] === 3) {
-      if (searchCheck(y, x) && maze[y + nextdirection[0]][x + nextdirection[1]] === undefined) {
-        changeBoard(y, x);
-        console.log('進んだundefined');
-      } else if (searchCheck(y, x) && maze[y + nextdirection[0]][x + nextdirection[1]] === 1) {
-        changeBoard(y, x);
-        console.log('進んだ1');
-      } else if (searchCheck(y, x) && maze[y + nextdirection[0]][x + nextdirection[1]] === 0) {
-        changeBoard(y, x);
-        console.log('進んだ0');
-      } else {
-        if (human === 3) {
-          console.log('回転した');
-          setHuman(0);
-        } else {
-          console.log('回転した');
-          setHuman(human + 1);
-        }
-      }
+  const rotateHuman = () => {
+    if (human === 3) {
+      console.log('回転した');
+      setHuman(0);
+    } else {
+      console.log('回転した');
+      setHuman(human + 1);
     }
   };
 
-  const changeThreeToFour = (y: number, x: number) => {
-    if (newMaze[y][x] === 4) {
-      newMaze[y][x] = 3;
-      setMaze(newMaze);
+  console.log('serchcount', serchcount);
+
+  const moveForward = (y: number, x: number) => {
+    if (searchCheck(y, x) && maze[y + nextdirection[0]][x + nextdirection[1]] === undefined) {
+      changeBoard(y, x);
+      console.log('進んだundefined');
+    } else if (searchCheck(y, x) && maze[y + nextdirection[0]][x + nextdirection[1]] === 1) {
+      changeBoard(y, x);
+      console.log('進んだ1');
+    } else if (searchCheck(y, x) && maze[y + nextdirection[0]][x + nextdirection[1]] === 4) {
+      changeBoard(y, x);
+      console.log('進んだ4');
+    } else {
+      rotateHuman();
+    }
+  };
+
+  const searchCell = (y: number, x: number) => {
+    if (serchcount === 0 && maze[y][x] === 3) {
+      if (
+        undefinedCheck(y, x) &&
+        maze[y + direction[0]][x + direction[1]] === 4 &&
+        maze[y + nextdirection[0]][x + nextdirection[1]] === 1
+      ) {
+        changeBoard(y, x);
+      } else {
+        moveForward(y, x);
+      }
     }
   };
 
   const onSearchClick = () => {
     iterateBoard(searchCell);
-    iterateBoard(changeThreeToFour);
     serchcount = 0;
   };
 

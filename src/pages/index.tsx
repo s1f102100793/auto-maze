@@ -16,7 +16,13 @@ const Home = () => {
         {maze.map((row, yIndex) => {
           return row.map((col, xIndex) => {
             const cellStyle =
-              col === 0 ? styles['cell-white'] : col === 1 ? styles['cell-black'] : styles.human;
+              col === 0
+                ? styles['cell-white']
+                : col === 1
+                ? styles['cell-black']
+                : col === 4
+                ? styles['cell-white']
+                : styles.human;
             return <div key={`cell-${yIndex}-${xIndex}`} className={cellStyle} />;
           });
         })}
