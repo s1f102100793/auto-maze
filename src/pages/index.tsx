@@ -1,11 +1,15 @@
 import { useGame } from '../hooks/useGame';
-import { useHuman } from '../hooks/useHuman';
 import styles from './index.module.css';
 
 const Home = () => {
-  const { maze, onClick, onSearchClick } = useGame();
+  const { maze, onClick, onSearchClick, human } = useGame();
   // const { onSearchClick } = useHuman();
+  // console.log('human', human);
   console.table(maze);
+  const rotatedDegrees = (human - 1) * 90;
+  const rotatedStyle = {
+    transform: `rotate(${rotatedDegrees}deg)`,
+  };
   return (
     <div className={styles.container}>
       <div className={styles.board}>

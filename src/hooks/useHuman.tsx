@@ -29,5 +29,5 @@ export const useHuman = () => {
   const onSearchClick = () => {
     iterateBoard(searchCell);
   };
-  return { onSearchClick, maze};
+  return { onSearchClick, maze, human };
 };
