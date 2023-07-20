@@ -43,9 +43,10 @@ export const useGame = () => {
   };
 
   const [human, setHuman] = useState(0);
+  const leftdirection = directions[(human + 2) % 4];
   const direction = directions[human % 4];
   const nextdirection = directions[(human + 1) % 4];
-  const backdirection = directions[(human + 2) % 4];
+  console.log(human);
   console.log('direction', direction);
   console.log('nextdirection', nextdirection);
 
@@ -92,16 +93,45 @@ export const useGame = () => {
   };
 
   const searchCell = (y: number, x: number) => {
-    if (serchcount === 0 && maze[y][x] === 3) {
-      if (
-        undefinedCheck(y, x) &&
-        maze[y + direction[0]][x + direction[1]] === 4 &&
-        (maze[y + nextdirection[0]][x + nextdirection[1]] === 1 ||
-          maze[y + nextdirection[0]][x + nextdirection[1]] === undefined)
-      ) {
-        changeBoard(y, x);
-      } else {
-        moveForward(y, x);
+    if (y !== 8) {
+      if (serchcount === 0 && maze[y][x] === 3) {
+        if (
+          undefinedCheck(y, x) &&
+          maze[y + direction[0]][x + direction[1]] === 4 &&
+          (maze[y + nextdirection[0]][x + nextdirection[1]] === undefined ||
+            maze[y + nextdirection[0]][x + nextdirection[1]] === 4 ||
+            maze[y + nextdirection[0]][x + nextdirection[1]] === 1)
+        ) {
+          changeBoard(y, x);
+        } else {
+          moveForward(y, x);
+        }
+      }
+    } else {
+      if (serchcount === 0 && maze[y][x] === 3) {
+        if (human % 4 !== 0) {
+          if (
+            undefinedCheck(y, x) &&
+            (maze[y + direction[0]][x + direction[1]] === 4 ||
+              maze[y + direction[0]][x + direction[1]] === 1) &&
+            (maze[y + leftdirection[0]][x + leftdirection[1]] === 4 ||
+              maze[y + leftdirection[0]][x + leftdirection[1]] === 1)
+          ) {
+            changeBoard(y, x);
+          }
+        } else {
+          if (
+            undefinedCheck(y, x) &&
+            maze[y + direction[0]][x + direction[1]] === 4 &&
+            (maze[y + nextdirection[0]][x + nextdirection[1]] === undefined ||
+              maze[y + nextdirection[0]][x + nextdirection[1]] === 4 ||
+              maze[y + nextdirection[0]][x + nextdirection[1]] === 1)
+          ) {
+            changeBoard(y, x);
+          } else {
+            moveForward(y, x);
+          }
+        }
       }
     }
   };
