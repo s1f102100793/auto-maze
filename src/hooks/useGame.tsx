@@ -119,31 +119,28 @@ export const useGame = () => {
     }
   };
 
+  const bottomRightmove = (y: number, x: number) => {
+    if (searchCheck(y, x)) {
+      changeBoard(y, x);
+    } else if (
+      maze[y + direction[0]][x + direction[1]] === 1 ||
+      maze[y + direction[0]][x + direction[1]] === undefined
+    ) {
+      rotateHuman();
+    } else {
+      changeBoard2(y, x);
+    }
+  };
+
   const humanMove = (y: number, x: number) => {
     if (serchcount === 0 && maze[y][x] === 3) {
       if (y !== 8) {
-        console.log('1');
         moveFour(y, x);
         moveZero(y, x);
       } else if (y === 8) {
-        console.log('6');
         if (human % 4 === 1) {
-          console.log('2');
-          if (searchCheck(y, x)) {
-            console.log('3');
-            changeBoard(y, x);
-          } else if (
-            maze[y + direction[0]][x + direction[1]] === 1 ||
-            maze[y + direction[0]][x + direction[1]] === undefined
-          ) {
-            console.log('3');
-            rotateHuman();
-          } else {
-            console.log('4');
-            changeBoard2(y, x);
-          }
+          bottomRightmove(y, x);
         } else {
-          console.log('5');
           moveFour(y, x);
           moveZero(y, x);
         }
