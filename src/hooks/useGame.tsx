@@ -65,6 +65,12 @@ export const useGame = () => {
     setMaze(newMaze);
     serchcount++;
   };
+  const changeBoard2 = (y: number, x: number) => {
+    newMaze[y][x] = 5;
+    newMaze[y + direction[0]][x + direction[1]] = 3;
+    setMaze(newMaze);
+    serchcount++;
+  };
 
   const rotateHuman = () => {
     if (human === 3) {
@@ -78,7 +84,7 @@ export const useGame = () => {
 
   console.log('serchcount', serchcount);
 
-  const moveForward = (y: number, x: number) => {
+  const moveZero = (y: number, x: number) => {
     if (searchCheck(y, x) && maze[y + rightdirection[0]][x + rightdirection[1]] === undefined) {
       changeBoard(y, x);
       console.log('進んだundefined');
@@ -93,24 +99,42 @@ export const useGame = () => {
     }
   };
 
+  const moveFour = (y: number, x: number) => {
+    if (
+      undefinedCheck(y, x) &&
+      maze[y + direction[0]][x + direction[1]] === 4 &&
+      (maze[y + rightdirection[0]][x + rightdirection[1]] === undefined ||
+        maze[y + rightdirection[0]][x + rightdirection[1]] === 4 ||
+        maze[y + rightdirection[0]][x + rightdirection[1]] === 5 ||
+        maze[y + rightdirection[0]][x + rightdirection[1]] === 1)
+    ) {
+      changeBoard2(y, x);
+    }
+  };
+
   const humanMove = (y: number, x: number) => {
     if (serchcount === 0 && maze[y][x] === 3) {
       if (y !== 8) {
-        moveForward(y, x);
+        moveFour(y, x);
+        moveZero(y, x);
       } else if (y === 8) {
         if (human % 4 === 1) {
           if (searchCheck(y, x)) {
+            console.log('1')
             changeBoard(y, x);
           } else if (
             maze[y + direction[0]][x + direction[1]] === 1 ||
             maze[y + direction[0]][x + direction[1]] === undefined
           ) {
+            console.log('2')
             rotateHuman();
           } else {
+            console.log('3')
             changeBoard(y, x);
           }
         } else {
-          moveForward(y, x);
+          console.log('2');
+          moveZero(y, x);
         }
       }
     }
@@ -130,7 +154,7 @@ export const useGame = () => {
   //         changeBoard(y, x);
   //       } else {
   //         console.log('6')
-  //         moveForward(y, x);
+  //         moveZero(y, x);
   //       }
   //     }
   //   } else {
@@ -166,7 +190,7 @@ export const useGame = () => {
   //         ) {
   //           changeBoard(y, x);
   //         } else {
-  //           moveForward(y, x);
+  //           moveZero(y, x);
   //         }
   //       }
   //     }

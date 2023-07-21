@@ -22,6 +22,8 @@ const Home = () => {
                 ? styles['cell-black']
                 : col === 4
                 ? styles['cell-white']
+                : col === 5
+                ? styles['cell-white']
                 : styles.human;
             return <div key={`cell-${yIndex}-${xIndex}`} className={cellStyle} />;
           });
