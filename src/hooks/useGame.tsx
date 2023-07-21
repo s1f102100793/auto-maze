@@ -85,23 +85,26 @@ export const useGame = () => {
   console.log('serchcount', serchcount);
 
   const moveZero = (y: number, x: number) => {
-    if (searchCheck(y, x) && maze[y + rightdirection[0]][x + rightdirection[1]] === undefined) {
-      changeBoard(y, x);
-      console.log('進んだundefined');
-    } else if (searchCheck(y, x) && maze[y + rightdirection[0]][x + rightdirection[1]] === 1) {
-      changeBoard(y, x);
-      console.log('進んだ1');
-    } else if (searchCheck(y, x) && maze[y + rightdirection[0]][x + rightdirection[1]] === 4) {
-      changeBoard(y, x);
-      console.log('進んだ4');
-    } else if (searchCheck(y, x) && maze[y + rightdirection[0]][x + rightdirection[1]] === 5) {
-      changeBoard(y, x);
-      console.log('進んだ5');
-    } else {
-      rotateHuman();
+    if (fourmovecount === 0) {
+      if (searchCheck(y, x) && maze[y + rightdirection[0]][x + rightdirection[1]] === undefined) {
+        changeBoard(y, x);
+        console.log('進んだundefined');
+      } else if (searchCheck(y, x) && maze[y + rightdirection[0]][x + rightdirection[1]] === 1) {
+        changeBoard(y, x);
+        console.log('進んだ1');
+      } else if (searchCheck(y, x) && maze[y + rightdirection[0]][x + rightdirection[1]] === 4) {
+        changeBoard(y, x);
+        console.log('進んだ4');
+      } else if (searchCheck(y, x) && maze[y + rightdirection[0]][x + rightdirection[1]] === 5) {
+        changeBoard(y, x);
+        console.log('進んだ5');
+      } else {
+        rotateHuman();
+      }
     }
   };
 
+  let fourmovecount = 0;
   const moveFour = (y: number, x: number) => {
     if (
       undefinedCheck(y, x) &&
@@ -112,94 +115,41 @@ export const useGame = () => {
         maze[y + rightdirection[0]][x + rightdirection[1]] === 1)
     ) {
       changeBoard2(y, x);
+      fourmovecount++;
     }
   };
 
   const humanMove = (y: number, x: number) => {
     if (serchcount === 0 && maze[y][x] === 3) {
       if (y !== 8) {
+        console.log('1');
         moveFour(y, x);
         moveZero(y, x);
       } else if (y === 8) {
+        console.log('6');
         if (human % 4 === 1) {
+          console.log('2');
           if (searchCheck(y, x)) {
-            console.log('1');
+            console.log('3');
             changeBoard(y, x);
           } else if (
             maze[y + direction[0]][x + direction[1]] === 1 ||
             maze[y + direction[0]][x + direction[1]] === undefined
           ) {
-            console.log('2');
+            console.log('3');
             rotateHuman();
           } else {
-            console.log('3');
+            console.log('4');
             changeBoard(y, x);
           }
         } else {
-          console.log('2');
+          console.log('5');
           moveFour(y, x);
           moveZero(y, x);
         }
       }
     }
   };
-
-  // const searchCell = (y: number, x: number) => {
-  //   if (y !== 8) {
-  //     if (serchcount === 0 && maze[y][x] === 3) {
-  //       if (
-  //         undefinedCheck(y, x) &&
-  //         maze[y + direction[0]][x + direction[1]] === 4 &&
-  //         (maze[y + rightdirection[0]][x + rightdirection[1]] === undefined ||
-  //           maze[y + rightdirection[0]][x + rightdirection[1]] === 4 ||
-  //           maze[y + rightdirection[0]][x + rightdirection[1]] === 1)
-  //       ) {
-  //         console.log('5')
-  //         changeBoard(y, x);
-  //       } else {
-  //         console.log('6')
-  //         moveZero(y, x);
-  //       }
-  //     }
-  //   } else {
-  //     if (serchcount === 0 && maze[y][x] === 3) {
-  //       console.log('1');
-  //       if (human % 4 === 1) {
-  //         console.log('2');
-  //         if (
-  //           undefinedCheck(y, x) &&
-  //           (maze[y + direction[0]][x + direction[1]] === 4 ||
-  //             maze[y + direction[0]][x + direction[1]] === 0) &&
-  //           (maze[y + leftdirection[0]][x + leftdirection[1]] === 4 ||
-  //             maze[y + leftdirection[0]][x + leftdirection[1]] === 1)
-  //         ) {
-  //           console.log('3');
-  //           changeBoard(y, x);
-  //         } else {
-  //           console.log('4');
-  //           rotateHuman();
-  //         }
-  //       }
-  //       // else if (human % 4 !== 0) {
-  //       //   console.log('5');
-  //       // }
-  //       else {
-  //         if (
-  //           undefinedCheck(y, x) &&
-  //           (maze[y + direction[0]][x + direction[1]] === 4 ||
-  //             maze[y + direction[0]][x + direction[1]] === 0) &&
-  //           (maze[y + rightdirection[0]][x + rightdirection[1]] === undefined ||
-  //             maze[y + rightdirection[0]][x + rightdirection[1]] === 4 ||
-  //             maze[y + rightdirection[0]][x + rightdirection[1]] === 1)
-  //         ) {
-  //           changeBoard(y, x);
-  //         } else {
-  //           moveZero(y, x);
-  //         }
-  //       }
-  //     }
-  //   }
-  // };
 
   const onSearchClick = () => {
     iterateBoard(humanMove);
