@@ -29,7 +29,6 @@ const Home = () => {
     }
   }, [autoClick, humanMove, Goal, goal, iterateBoard, setSearchCount]);
 
-  console.table(maze);
   return (
     <div className={styles.container}>
       <div className={styles.board}>

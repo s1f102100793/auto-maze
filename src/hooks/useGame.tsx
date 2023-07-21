@@ -40,6 +40,7 @@ export const useGame = () => {
     iterateBoard(Itteme);
     newMaze[0][0] = 3;
     iterateBoard(allOne);
+    setHuman(0);
   };
 
   const [human, setHuman] = useState(0);
@@ -54,34 +55,30 @@ export const useGame = () => {
     },
     [maze, direction]
   );
-
   const searchCheck = useCallback(
     (y: number, x: number) => {
       return undefinedCheck(y, x) && maze[y + direction[0]][x + direction[1]] === 0;
     },
     [undefinedCheck, maze, direction]
   );
-
   const changeBoard = useCallback(
     (y: number, x: number) => {
       newMaze[y][x] = 4;
       newMaze[y + direction[0]][x + direction[1]] = 3;
       setMaze(newMaze);
-      setSearchCount(1)
+      setSearchCount(1);
     },
     [newMaze, direction, setMaze]
   );
-
   const changeBoard2 = useCallback(
     (y: number, x: number) => {
       newMaze[y][x] = 5;
       newMaze[y + direction[0]][x + direction[1]] = 3;
       setMaze(newMaze);
-      setSearchCount(1)
+      setSearchCount(1);
     },
     [newMaze, direction, setMaze]
   );
-
   const rotateHuman = useCallback(() => {
     if (human === 3) {
       console.log('回転した');
@@ -91,7 +88,6 @@ export const useGame = () => {
       setHuman(human + 1);
     }
   }, [human]);
-
   const rightDirectionrules = useCallback(
     (y: number, x: number) => {
       return (
@@ -103,9 +99,7 @@ export const useGame = () => {
     },
     [maze, rightdirection]
   );
-
   let fourmovecount = 0;
-
   const moveZero = useCallback(
     (y: number, x: number) => {
       if (fourmovecount === 0) {
@@ -130,7 +124,6 @@ export const useGame = () => {
     },
     [maze, rightdirection]
   );
-
   const moveFour = useCallback(
     (y: number, x: number) => {
       if (
@@ -144,7 +137,6 @@ export const useGame = () => {
     },
     [fourmovecount, undefinedCheck, maze, direction, changeBoard2, fourRightrules]
   );
-
   const bottomRightmove = useCallback(
     (y: number, x: number) => {
       if (searchCheck(y, x)) {
@@ -160,7 +152,6 @@ export const useGame = () => {
     },
     [searchCheck, maze, direction, changeBoard, changeBoard2, rotateHuman]
   );
-
   const bottomMove = useCallback(
     (y: number, x: number) => {
       if (human % 4 === 1) {
@@ -172,7 +163,6 @@ export const useGame = () => {
     },
     [human, moveFour, moveZero, bottomRightmove]
   );
-
   const humanMove = useCallback(
     (y: number, x: number) => {
       if (searchcount === 0 && maze[y][x] === 3) {
@@ -186,7 +176,6 @@ export const useGame = () => {
     },
     [maze, moveFour, moveZero, bottomMove, searchcount]
   );
-
   const Goal = useCallback(() => {
     if (goal === 0 && maze[8][8] === 3) {
       alert('goal');
@@ -196,5 +185,15 @@ export const useGame = () => {
   const onSearchClickkey = () => {
     setAutoClick(!autoClick);
   };
-  return { maze, onClick, iterateBoard, onSearchClickkey, autoClick, goal, humanMove, Goal, setSearchCount };
+  return {
+    maze,
+    onClick,
+    iterateBoard,
+    onSearchClickkey,
+    autoClick,
+    goal,
+    humanMove,
+    Goal,
+    setSearchCount,
+  };
 };
