@@ -94,6 +94,9 @@ export const useGame = () => {
     } else if (searchCheck(y, x) && maze[y + rightdirection[0]][x + rightdirection[1]] === 4) {
       changeBoard(y, x);
       console.log('進んだ4');
+    } else if (searchCheck(y, x) && maze[y + rightdirection[0]][x + rightdirection[1]] === 5) {
+      changeBoard(y, x);
+      console.log('進んだ5');
     } else {
       rotateHuman();
     }
@@ -120,20 +123,21 @@ export const useGame = () => {
       } else if (y === 8) {
         if (human % 4 === 1) {
           if (searchCheck(y, x)) {
-            console.log('1')
+            console.log('1');
             changeBoard(y, x);
           } else if (
             maze[y + direction[0]][x + direction[1]] === 1 ||
             maze[y + direction[0]][x + direction[1]] === undefined
           ) {
-            console.log('2')
+            console.log('2');
             rotateHuman();
           } else {
-            console.log('3')
+            console.log('3');
             changeBoard(y, x);
           }
         } else {
           console.log('2');
+          moveFour(y, x);
           moveZero(y, x);
         }
       }
