@@ -1,10 +1,33 @@
+import { useEffect } from 'react';
 import { useGame } from '../hooks/useGame';
 import styles from './index.module.css';
-
 const Home = () => {
-  const { maze, onClick, onSearchClickkey } = useGame();
-  // const { onSearchClick } = useHuman();
-  // console.log('human', human);
+  const {
+    maze,
+    onClick,
+    iterateBoard,
+    onSearchClickkey,
+    autoClick,
+    goal,
+    humanMove,
+    Goal,
+    setSearchCount,
+  } = useGame();
+  useEffect(() => {
+    if (autoClick) {
+      const onSearchClick = () => {
+        if (goal === 0) {
+          iterateBoard(humanMove);
+          setSearchCount(0);
+          iterateBoard(Goal);
+        }
+      };
+      const interval = setInterval(() => {
+        onSearchClick();
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [autoClick, humanMove, Goal, goal, iterateBoard, setSearchCount]);
 
   console.table(maze);
   return (

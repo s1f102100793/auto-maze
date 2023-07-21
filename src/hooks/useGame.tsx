@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useBoard } from './useBoard';
-let serchcount = 0;
 let goal = 0;
-const key = 0;
 
 export const useGame = () => {
   const { maze, setMaze, directions, newMaze } = useBoard();
@@ -46,36 +44,45 @@ export const useGame = () => {
 
   const [human, setHuman] = useState(0);
   const [autoClick, setAutoClick] = useState(false);
-  const leftdirection = directions[(human + 3) % 4];
+  const [searchcount, setSearchCount] = useState(0);
   const direction = directions[human % 4];
   const rightdirection = directions[(human + 1) % 4];
-  console.log('human', human);
-  console.log('direction', direction);
-  console.log('rightdirection', rightdirection);
-  console.log('leftdirection', leftdirection);
 
-  const undefinedCheck = (y: number, x: number) => {
-    return maze[y + direction[0]] !== undefined && maze[x + direction[1]] !== undefined;
-  };
+  const undefinedCheck = useCallback(
+    (y: number, x: number) => {
+      return maze[y + direction[0]] !== undefined && maze[x + direction[1]] !== undefined;
+    },
+    [maze, direction]
+  );
 
-  const searchCheck = (y: number, x: number) => {
-    return undefinedCheck(y, x) && maze[y + direction[0]][x + direction[1]] === 0;
-  };
+  const searchCheck = useCallback(
+    (y: number, x: number) => {
+      return undefinedCheck(y, x) && maze[y + direction[0]][x + direction[1]] === 0;
+    },
+    [undefinedCheck, maze, direction]
+  );
 
-  const changeBoard = (y: number, x: number) => {
-    newMaze[y][x] = 4;
-    newMaze[y + direction[0]][x + direction[1]] = 3;
-    setMaze(newMaze);
-    serchcount++;
-  };
-  const changeBoard2 = (y: number, x: number) => {
-    newMaze[y][x] = 5;
-    newMaze[y + direction[0]][x + direction[1]] = 3;
-    setMaze(newMaze);
-    serchcount++;
-  };
+  const changeBoard = useCallback(
+    (y: number, x: number) => {
+      newMaze[y][x] = 4;
+      newMaze[y + direction[0]][x + direction[1]] = 3;
+      setMaze(newMaze);
+      setSearchCount(1)
+    },
+    [newMaze, direction, setMaze]
+  );
 
-  const rotateHuman = () => {
+  const changeBoard2 = useCallback(
+    (y: number, x: number) => {
+      newMaze[y][x] = 5;
+      newMaze[y + direction[0]][x + direction[1]] = 3;
+      setMaze(newMaze);
+      setSearchCount(1)
+    },
+    [newMaze, direction, setMaze]
+  );
+
+  const rotateHuman = useCallback(() => {
     if (human === 3) {
       console.log('回転した');
       setHuman(0);
@@ -83,116 +90,111 @@ export const useGame = () => {
       console.log('回転した');
       setHuman(human + 1);
     }
-  };
+  }, [human]);
 
-  console.log('serchcount', serchcount);
-
-  const rightDirectionrules = (y: number, x: number) => {
-    return (
-      maze[y + rightdirection[0]][x + rightdirection[1]] === undefined ||
-      maze[y + rightdirection[0]][x + rightdirection[1]] === 1 ||
-      maze[y + rightdirection[0]][x + rightdirection[1]] === 4 ||
-      maze[y + rightdirection[0]][x + rightdirection[1]] === 5
-    );
-  };
-
-  const moveZero = (y: number, x: number) => {
-    if (fourmovecount === 0) {
-      if (searchCheck(y, x) && rightDirectionrules(y, x)) {
-        changeBoard(y, x);
-        console.log('進んだ');
-      } else {
-        rotateHuman();
-      }
-    }
-  };
-
-  const fourRightrules = (y: number, x: number) => {
-    return (
-      maze[y + rightdirection[0]][x + rightdirection[1]] === undefined ||
-      maze[y + rightdirection[0]][x + rightdirection[1]] === 4 ||
-      maze[y + rightdirection[0]][x + rightdirection[1]] === 5 ||
-      maze[y + rightdirection[0]][x + rightdirection[1]] === 1
-    );
-  };
+  const rightDirectionrules = useCallback(
+    (y: number, x: number) => {
+      return (
+        maze[y + rightdirection[0]][x + rightdirection[1]] === undefined ||
+        maze[y + rightdirection[0]][x + rightdirection[1]] === 1 ||
+        maze[y + rightdirection[0]][x + rightdirection[1]] === 4 ||
+        maze[y + rightdirection[0]][x + rightdirection[1]] === 5
+      );
+    },
+    [maze, rightdirection]
+  );
 
   let fourmovecount = 0;
-  const moveFour = (y: number, x: number) => {
-    if (
-      undefinedCheck(y, x) &&
-      maze[y + direction[0]][x + direction[1]] === 4 &&
-      fourRightrules(y, x)
-    ) {
-      changeBoard2(y, x);
-      fourmovecount++;
-    }
-  };
 
-  const bottomRightmove = (y: number, x: number) => {
-    if (searchCheck(y, x)) {
-      changeBoard(y, x);
-    } else if (
-      maze[y + direction[0]][x + direction[1]] === 1 ||
-      maze[y + direction[0]][x + direction[1]] === undefined
-    ) {
-      rotateHuman();
-    } else {
-      changeBoard2(y, x);
-    }
-  };
+  const moveZero = useCallback(
+    (y: number, x: number) => {
+      if (fourmovecount === 0) {
+        if (searchCheck(y, x) && rightDirectionrules(y, x)) {
+          changeBoard(y, x);
+          console.log('進んだ');
+        } else {
+          rotateHuman();
+        }
+      }
+    },
+    [fourmovecount, searchCheck, rightDirectionrules, changeBoard, rotateHuman]
+  );
+  const fourRightrules = useCallback(
+    (y: number, x: number) => {
+      return (
+        maze[y + rightdirection[0]][x + rightdirection[1]] === undefined ||
+        maze[y + rightdirection[0]][x + rightdirection[1]] === 4 ||
+        maze[y + rightdirection[0]][x + rightdirection[1]] === 5 ||
+        maze[y + rightdirection[0]][x + rightdirection[1]] === 1
+      );
+    },
+    [maze, rightdirection]
+  );
 
-  const bottomMove = (y: number, x: number) => {
-    if (human % 4 === 1) {
-      bottomRightmove(y, x);
-    } else {
-      moveFour(y, x);
-      moveZero(y, x);
-    }
-  };
+  const moveFour = useCallback(
+    (y: number, x: number) => {
+      if (
+        undefinedCheck(y, x) &&
+        maze[y + direction[0]][x + direction[1]] === 4 &&
+        fourRightrules(y, x)
+      ) {
+        changeBoard2(y, x);
+        fourmovecount++;
+      }
+    },
+    [fourmovecount, undefinedCheck, maze, direction, changeBoard2, fourRightrules]
+  );
 
-  const humanMove = (y: number, x: number) => {
-    if (serchcount === 0 && maze[y][x] === 3) {
-      if (y !== 8) {
+  const bottomRightmove = useCallback(
+    (y: number, x: number) => {
+      if (searchCheck(y, x)) {
+        changeBoard(y, x);
+      } else if (
+        maze[y + direction[0]][x + direction[1]] === 1 ||
+        maze[y + direction[0]][x + direction[1]] === undefined
+      ) {
+        rotateHuman();
+      } else {
+        changeBoard2(y, x);
+      }
+    },
+    [searchCheck, maze, direction, changeBoard, changeBoard2, rotateHuman]
+  );
+
+  const bottomMove = useCallback(
+    (y: number, x: number) => {
+      if (human % 4 === 1) {
+        bottomRightmove(y, x);
+      } else {
         moveFour(y, x);
         moveZero(y, x);
-      } else if (y === 8) {
-        bottomMove(y, x);
       }
-    }
-  };
+    },
+    [human, moveFour, moveZero, bottomRightmove]
+  );
 
-  const Goal = () => {
+  const humanMove = useCallback(
+    (y: number, x: number) => {
+      if (searchcount === 0 && maze[y][x] === 3) {
+        if (y !== 8) {
+          moveFour(y, x);
+          moveZero(y, x);
+        } else if (y === 8) {
+          bottomMove(y, x);
+        }
+      }
+    },
+    [maze, moveFour, moveZero, bottomMove, searchcount]
+  );
+
+  const Goal = useCallback(() => {
     if (goal === 0 && maze[8][8] === 3) {
       alert('goal');
       goal++;
     }
-  };
-
+  }, [maze]);
   const onSearchClickkey = () => {
     setAutoClick(!autoClick);
   };
-
-  useEffect(() => {
-    if (autoClick) {
-      const onSearchClick = () => {
-        if (goal === 0) {
-          iterateBoard(humanMove);
-          serchcount = 0;
-          iterateBoard(Goal);
-        }
-      };
-
-      const interval = setInterval(() => {
-        onSearchClick();
-      }, 1000);
-
-      return () => clearInterval(interval);
-    }
-  }, [autoClick, Goal, humanMove]);
-
-  // const autoOnserchClick = () => {
-  //   setInterval(onSearchClick, 1000);
-  // };
-
-  return { maze, setMaze, onClick, iterateBoard, human, onSearchClickkey };
+  return { maze, onClick, iterateBoard, onSearchClickkey, autoClick, goal, humanMove, Goal, setSearchCount };
 };
