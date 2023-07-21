@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useBoard } from './useBoard';
 let serchcount = 0;
 let goal = 0;
+const key = 0;
 
 export const useGame = () => {
   const { maze, setMaze, directions, newMaze } = useBoard();
@@ -44,6 +45,7 @@ export const useGame = () => {
   };
 
   const [human, setHuman] = useState(0);
+  const [autoClick, setAutoClick] = useState(false);
   const leftdirection = directions[(human + 3) % 4];
   const direction = directions[human % 4];
   const rightdirection = directions[(human + 1) % 4];
@@ -166,13 +168,31 @@ export const useGame = () => {
     }
   };
 
-  const onSearchClick = () => {
-    if (goal === 0) {
-      iterateBoard(humanMove);
-      serchcount = 0;
-      iterateBoard(Goal);
-    }
+  const onSearchClickkey = () => {
+    setAutoClick(!autoClick);
   };
 
-  return { maze, setMaze, onClick, iterateBoard, onSearchClick, human };
+  useEffect(() => {
+    if (autoClick) {
+      const onSearchClick = () => {
+        if (goal === 0) {
+          iterateBoard(humanMove);
+          serchcount = 0;
+          iterateBoard(Goal);
+        }
+      };
+
+      const interval = setInterval(() => {
+        onSearchClick();
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [autoClick, Goal, humanMove]);
+
+  // const autoOnserchClick = () => {
+  //   setInterval(onSearchClick, 1000);
+  // };
+
+  return { maze, setMaze, onClick, iterateBoard, human, onSearchClickkey };
 };
