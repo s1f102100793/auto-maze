@@ -140,7 +140,7 @@ export const useGame = () => {
             rotateHuman();
           } else {
             console.log('4');
-            changeBoard(y, x);
+            changeBoard2(y, x);
           }
         } else {
           console.log('5');
