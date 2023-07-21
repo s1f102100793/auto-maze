@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useBoard } from './useBoard';
 let serchcount = 0;
+let goal = 0;
 
 export const useGame = () => {
   const { maze, setMaze, directions, newMaze } = useBoard();
@@ -84,24 +85,33 @@ export const useGame = () => {
 
   console.log('serchcount', serchcount);
 
+  const rightDirectionrules = (y: number, x: number) => {
+    return (
+      maze[y + rightdirection[0]][x + rightdirection[1]] === undefined ||
+      maze[y + rightdirection[0]][x + rightdirection[1]] === 1 ||
+      maze[y + rightdirection[0]][x + rightdirection[1]] === 4 ||
+      maze[y + rightdirection[0]][x + rightdirection[1]] === 5
+    );
+  };
+
   const moveZero = (y: number, x: number) => {
     if (fourmovecount === 0) {
-      if (searchCheck(y, x) && maze[y + rightdirection[0]][x + rightdirection[1]] === undefined) {
+      if (searchCheck(y, x) && rightDirectionrules(y, x)) {
         changeBoard(y, x);
-        console.log('進んだundefined');
-      } else if (searchCheck(y, x) && maze[y + rightdirection[0]][x + rightdirection[1]] === 1) {
-        changeBoard(y, x);
-        console.log('進んだ1');
-      } else if (searchCheck(y, x) && maze[y + rightdirection[0]][x + rightdirection[1]] === 4) {
-        changeBoard(y, x);
-        console.log('進んだ4');
-      } else if (searchCheck(y, x) && maze[y + rightdirection[0]][x + rightdirection[1]] === 5) {
-        changeBoard(y, x);
-        console.log('進んだ5');
+        console.log('進んだ');
       } else {
         rotateHuman();
       }
     }
+  };
+
+  const fourRightrules = (y: number, x: number) => {
+    return (
+      maze[y + rightdirection[0]][x + rightdirection[1]] === undefined ||
+      maze[y + rightdirection[0]][x + rightdirection[1]] === 4 ||
+      maze[y + rightdirection[0]][x + rightdirection[1]] === 5 ||
+      maze[y + rightdirection[0]][x + rightdirection[1]] === 1
+    );
   };
 
   let fourmovecount = 0;
@@ -109,10 +119,7 @@ export const useGame = () => {
     if (
       undefinedCheck(y, x) &&
       maze[y + direction[0]][x + direction[1]] === 4 &&
-      (maze[y + rightdirection[0]][x + rightdirection[1]] === undefined ||
-        maze[y + rightdirection[0]][x + rightdirection[1]] === 4 ||
-        maze[y + rightdirection[0]][x + rightdirection[1]] === 5 ||
-        maze[y + rightdirection[0]][x + rightdirection[1]] === 1)
+      fourRightrules(y, x)
     ) {
       changeBoard2(y, x);
       fourmovecount++;
@@ -132,25 +139,39 @@ export const useGame = () => {
     }
   };
 
+  const bottomMove = (y: number, x: number) => {
+    if (human % 4 === 1) {
+      bottomRightmove(y, x);
+    } else {
+      moveFour(y, x);
+      moveZero(y, x);
+    }
+  };
+
   const humanMove = (y: number, x: number) => {
     if (serchcount === 0 && maze[y][x] === 3) {
       if (y !== 8) {
         moveFour(y, x);
         moveZero(y, x);
       } else if (y === 8) {
-        if (human % 4 === 1) {
-          bottomRightmove(y, x);
-        } else {
-          moveFour(y, x);
-          moveZero(y, x);
-        }
+        bottomMove(y, x);
       }
     }
   };
 
+  const Goal = () => {
+    if (goal === 0 && maze[8][8] === 3) {
+      alert('goal');
+      goal++;
+    }
+  };
+
   const onSearchClick = () => {
-    iterateBoard(humanMove);
-    serchcount = 0;
+    if (goal === 0) {
+      iterateBoard(humanMove);
+      serchcount = 0;
+      iterateBoard(Goal);
+    }
   };
 
   return { maze, setMaze, onClick, iterateBoard, onSearchClick, human };
