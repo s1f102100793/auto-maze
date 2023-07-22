@@ -12,11 +12,13 @@ const Home = () => {
     humanMove,
     Goal,
     setSearchCount,
+    start,
   } = useGame();
+  console.log('start', start);
   useEffect(() => {
     if (autoClick) {
       const onSearchClick = () => {
-        if (goal === 0) {
+        if (goal === 0 && start === 1) {
           iterateBoard(humanMove);
           setSearchCount(0);
           iterateBoard(Goal);
@@ -27,7 +29,7 @@ const Home = () => {
       }, 1000);
       return () => clearInterval(interval);
     }
-  }, [autoClick, humanMove, Goal, goal, iterateBoard, setSearchCount]);
+  }, [autoClick, humanMove, Goal, goal, iterateBoard, setSearchCount, start]);
 
   return (
     <div className={styles.container}>

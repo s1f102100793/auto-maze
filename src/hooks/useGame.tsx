@@ -1,10 +1,9 @@
 import { useCallback, useState } from 'react';
 import { useBoard } from './useBoard';
 let goal = 0;
-
+let start = 0;
 export const useGame = () => {
   const { maze, setMaze, directions, newMaze } = useBoard();
-
   const iterateBoard = (callback: (y: number, x: number) => void) => {
     for (let y = 0; y < 9; y++) {
       for (let x = 0; x < 9; x++) {
@@ -12,7 +11,6 @@ export const useGame = () => {
       }
     }
   };
-
   const Itteme = (y: number, x: number) => {
     if (y % 2 === 1 && x % 2 === 1) {
       const falldirection = directions[Math.floor(Math.random() * directions.length)];
@@ -22,7 +20,6 @@ export const useGame = () => {
       }
     }
   };
-
   const allOne = (y: number, x: number) => {
     if (newMaze[y][x] === 2) {
       newMaze[y][x] = 1;
@@ -41,6 +38,8 @@ export const useGame = () => {
     newMaze[0][0] = 3;
     iterateBoard(allOne);
     setHuman(0);
+    goal = 0;
+    start = 0;
   };
 
   const [human, setHuman] = useState(0);
@@ -184,6 +183,7 @@ export const useGame = () => {
   }, [maze]);
   const onSearchClickkey = () => {
     setAutoClick(!autoClick);
+    start = 1;
   };
   return {
     maze,
@@ -195,5 +195,6 @@ export const useGame = () => {
     humanMove,
     Goal,
     setSearchCount,
+    start,
   };
 };
