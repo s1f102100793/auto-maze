@@ -14,7 +14,6 @@ const Home = () => {
     setSearchCount,
     start,
   } = useGame();
-  console.log('start', start);
   useEffect(() => {
     if (autoClick) {
       const onSearchClick = () => {
@@ -37,15 +36,13 @@ const Home = () => {
         {maze.map((row, yIndex) => {
           return row.map((col, xIndex) => {
             const cellStyle =
-              col === 0
-                ? styles['cell-white']
-                : col === 1
+              col === 1
                 ? styles['cell-black']
-                : col === 4
-                ? styles['cell-white']
-                : col === 5
-                ? styles['cell-white']
-                : styles.human;
+                : col === 6
+                ? styles['goal']
+                : col === 3
+                ? styles.human
+                : styles['cell-white'];
             return <div key={`cell-${yIndex}-${xIndex}`} className={cellStyle} />;
           });
         })}

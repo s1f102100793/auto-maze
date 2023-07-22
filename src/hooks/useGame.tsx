@@ -26,28 +26,25 @@ export const useGame = () => {
       setMaze(newMaze);
     }
   };
-
   const allZero = (y: number, x: number) => {
     newMaze[y][x] = 0;
     setMaze(newMaze);
   };
-
   const onClick = () => {
     iterateBoard(allZero);
     iterateBoard(Itteme);
     newMaze[0][0] = 3;
+    newMaze[8][8] = 6;
     iterateBoard(allOne);
     setHuman(0);
     goal = 0;
     start = 0;
   };
-
   const [human, setHuman] = useState(0);
   const [autoClick, setAutoClick] = useState(false);
   const [searchcount, setSearchCount] = useState(0);
   const direction = directions[human % 4];
   const rightdirection = directions[(human + 1) % 4];
-
   const undefinedCheck = useCallback(
     (y: number, x: number) => {
       return maze[y + direction[0]] !== undefined && maze[x + direction[1]] !== undefined;
@@ -56,7 +53,11 @@ export const useGame = () => {
   );
   const searchCheck = useCallback(
     (y: number, x: number) => {
-      return undefinedCheck(y, x) && maze[y + direction[0]][x + direction[1]] === 0;
+      return (
+        undefinedCheck(y, x) &&
+        (maze[y + direction[0]][x + direction[1]] === 0 ||
+          maze[y + direction[0]][x + direction[1]] === 6)
+      );
     },
     [undefinedCheck, maze, direction]
   );
@@ -80,10 +81,8 @@ export const useGame = () => {
   );
   const rotateHuman = useCallback(() => {
     if (human === 3) {
-      console.log('回転した');
       setHuman(0);
     } else {
-      console.log('回転した');
       setHuman(human + 1);
     }
   }, [human]);
