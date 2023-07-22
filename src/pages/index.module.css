@@ -15,7 +15,7 @@
   align-items: center;
   width: 540px;
   height: 540px;
-  background-color: #c6c6c6;
+  background-color: #d5e5f2;
 }
 
 .cell-white {
@@ -57,10 +57,12 @@
 .human {
   width: 60px;
   height: 60px;
+  content: '';
+  background: url('~/assets/images/pikachu.png') no-repeat;
+  background-size: 200%;
+  background-position: 50% 50%;
   border: 1px solid black;
-  display: flex;
   align-items: center;
-  background-color: #888;
   justify-content: center;
 }
 
@@ -70,6 +72,20 @@
   border: 1px solid black;
   display: flex;
   align-items: center;
-  background-color: #0A95D0;
+  background: url('~/assets/images/satoshi.png') no-repeat;
+  background-size: 50%;
+  background-position: 50% 50%;
+  justify-content: center;
+}
+
+.satoshipikachu {
+  width: 60px;
+  height: 60px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  background: url('~/assets/images/pikachu-satoshi.png') no-repeat;
+  background-size: 100%;
+  background-position: 50% 50%;
   justify-content: center;
 }

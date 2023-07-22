@@ -176,7 +176,6 @@ export const useGame = () => {
   );
   const Goal = useCallback(() => {
     if (goal === 0 && maze[8][8] === 3) {
-      alert('goal');
       goal++;
     }
   }, [maze]);
@@ -184,16 +183,8 @@ export const useGame = () => {
     setAutoClick(!autoClick);
     start = 1;
   };
+  
   return {
-    maze,
-    onClick,
-    iterateBoard,
-    onSearchClickkey,
-    autoClick,
-    goal,
-    humanMove,
-    Goal,
-    setSearchCount,
-    start,
+    maze, onClick, iterateBoard, onSearchClickkey, autoClick, goal, humanMove, Goal, setSearchCount, start, newMaze, setMaze
   };
 };

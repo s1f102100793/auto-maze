@@ -13,6 +13,8 @@ const Home = () => {
     Goal,
     setSearchCount,
     start,
+    newMaze,
+    setMaze,
   } = useGame();
   useEffect(() => {
     if (autoClick) {
@@ -25,10 +27,15 @@ const Home = () => {
       };
       const interval = setInterval(() => {
         onSearchClick();
-      }, 1000);
+      }, 600);
       return () => clearInterval(interval);
     }
   }, [autoClick, humanMove, Goal, goal, iterateBoard, setSearchCount, start]);
+
+  if (maze[8][8] === 3) {
+    newMaze[8][8] = 7;
+    setMaze(newMaze);
+  }
 
   return (
     <div className={styles.container}>
@@ -42,6 +49,8 @@ const Home = () => {
                 ? styles['goal']
                 : col === 3
                 ? styles.human
+                : col === 7
+                ? styles.satoshipikachu
                 : styles['cell-white'];
             return <div key={`cell-${yIndex}-${xIndex}`} className={cellStyle} />;
           });
