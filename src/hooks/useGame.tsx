@@ -185,6 +185,6 @@ export const useGame = () => {
   };
   
   return {
-    maze, onClick, iterateBoard, onSearchClickkey, autoClick, goal, humanMove, Goal, setSearchCount, start, newMaze, setMaze
+    maze, onClick, iterateBoard, onSearchClickkey, autoClick, goal, humanMove, Goal, setSearchCount, start, newMaze, setMaze, human
   };
 };

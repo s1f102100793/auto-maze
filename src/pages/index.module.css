@@ -54,18 +54,6 @@
   margin-top: 10px;
 }
 
-.human {
-  width: 60px;
-  height: 60px;
-  content: '';
-  background: url('~/assets/images/pikachu.png') no-repeat;
-  background-size: 200%;
-  background-position: 50% 50%;
-  border: 1px solid black;
-  align-items: center;
-  justify-content: center;
-}
-
 .goal {
   width: 60px;
   height: 60px;
@@ -88,4 +76,32 @@
   background-size: 100%;
   background-position: 50% 50%;
   justify-content: center;
+}
+
+.pikachu {
+  width: 60px;
+  height: 60px;
+  content: '';
+  background: url('~/assets/images/pikachu.png') no-repeat;
+  background-size: 200%;
+  background-position: 50% 50%;
+  border: 1px solid black;
+  align-items: center;
+  justify-content: center;
+}
+
+.rotate-0 {
+  transform: rotate(360deg);
+}
+
+.rotate-90 {
+  transform: rotate(90deg);
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.rotate-270 {
+  transform: rotate(270deg);
 }

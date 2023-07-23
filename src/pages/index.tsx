@@ -15,6 +15,7 @@ const Home = () => {
     start,
     newMaze,
     setMaze,
+    human,
   } = useGame();
   useEffect(() => {
     if (autoClick) {
@@ -37,6 +38,12 @@ const Home = () => {
     setMaze(newMaze);
   }
 
+  console.log(human);
+  const getRotationClass = (angle: number) => {
+    return `rotate-${angle * 90}`;
+  };
+  console.log(getRotationClass(human));
+
   return (
     <div className={styles.container}>
       <div className={styles.board}>
@@ -48,7 +55,7 @@ const Home = () => {
                 : col === 6
                 ? styles['goal']
                 : col === 3
-                ? styles.human
+                ? `${styles.pikachu} ${(styles as any)[getRotationClass(human)]}`
                 : col === 7
                 ? styles.satoshipikachu
                 : styles['cell-white'];
