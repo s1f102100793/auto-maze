@@ -21,5 +21,13 @@ export const useBoard = () => {
   ];
   const newMaze: number[][] = JSON.parse(JSON.stringify(maze));
 
-  return { maze, setMaze, directions, newMaze };
+  const iterateBoard = (callback: (y: number, x: number) => void) => {
+    for (let y = 0; y < 9; y++) {
+      for (let x = 0; x < 9; x++) {
+        callback(y, x);
+      }
+    }
+  };
+
+  return { maze, setMaze, directions, newMaze, iterateBoard };
 };

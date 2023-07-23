@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
+import { useBoard } from '../hooks/useBoard';
 import { useGame } from '../hooks/useGame';
 import styles from './index.module.css';
 const Home = () => {
   const {
     maze,
     onClick,
-    iterateBoard,
     onSearchClickkey,
     autoClick,
     goal,
@@ -17,6 +17,7 @@ const Home = () => {
     setMaze,
     human,
   } = useGame();
+  const { iterateBoard } = useBoard();
   useEffect(() => {
     if (autoClick) {
       const onSearchClick = () => {

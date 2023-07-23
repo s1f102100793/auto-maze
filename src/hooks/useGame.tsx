@@ -3,14 +3,7 @@ import { useBoard } from './useBoard';
 let goal = 0;
 let start = 0;
 export const useGame = () => {
-  const { maze, setMaze, directions, newMaze } = useBoard();
-  const iterateBoard = (callback: (y: number, x: number) => void) => {
-    for (let y = 0; y < 9; y++) {
-      for (let x = 0; x < 9; x++) {
-        callback(y, x);
-      }
-    }
-  };
+  const { maze, setMaze, directions, newMaze, iterateBoard } = useBoard();
   const Itteme = (y: number, x: number) => {
     if (y % 2 === 1 && x % 2 === 1) {
       const falldirection = directions[Math.floor(Math.random() * directions.length)];
@@ -103,7 +96,6 @@ export const useGame = () => {
       if (fourmovecount === 0) {
         if (searchCheck(y, x) && rightDirectionrules(y, x)) {
           changeBoard(y, x);
-          console.log('進んだ');
         } else {
           rotateHuman();
         }
@@ -183,8 +175,18 @@ export const useGame = () => {
     setAutoClick(!autoClick);
     start = 1;
   };
-  
   return {
-    maze, onClick, iterateBoard, onSearchClickkey, autoClick, goal, humanMove, Goal, setSearchCount, start, newMaze, setMaze, human
+    maze,
+    onClick,
+    onSearchClickkey,
+    autoClick,
+    goal,
+    humanMove,
+    Goal,
+    setSearchCount,
+    start,
+    newMaze,
+    setMaze,
+    human,
   };
 };
