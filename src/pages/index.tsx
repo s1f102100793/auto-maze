@@ -38,11 +38,9 @@ const Home = () => {
     setMaze(newMaze);
   }
 
-  console.log(human);
   const getRotationClass = (angle: number) => {
-    return `rotate-${angle * 90}`;
+    return `rotate${(angle - 1) * 90}`;
   };
-  console.log(getRotationClass(human));
 
   return (
     <div className={styles.container}>

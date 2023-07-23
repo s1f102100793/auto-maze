@@ -36,7 +36,7 @@ export const useGame = () => {
     newMaze[0][0] = 3;
     newMaze[8][8] = 6;
     iterateBoard(allOne);
-    setHuman(0);
+    setHuman(1);
     goal = 0;
     start = 0;
   };
