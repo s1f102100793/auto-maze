@@ -3,8 +3,8 @@ import { useBoard } from './useBoard';
 import { useGame } from './useGame';
 
 export const useHuman = () => {
-  const { iterateBoard, maze } = useGame();
-  const { directions, newMaze, setMaze } = useBoard();
+  const { maze } = useGame();
+  const { directions, newMaze, setMaze, iterateBoard } = useBoard();
   const [human, setHuman] = useState(0);
   const direction = directions[human];
 
