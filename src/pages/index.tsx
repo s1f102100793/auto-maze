@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useBoard } from '../hooks/useBoard';
 import { useGame } from '../hooks/useGame';
 import styles from './index.module.css';
@@ -18,6 +18,7 @@ const Home = () => {
     human,
   } = useGame();
   const { iterateBoard } = useBoard();
+  // onSearchClick関数をuseEffectの外で定義する
   useEffect(() => {
     if (autoClick) {
       const onSearchClick = () => {
@@ -34,6 +35,17 @@ const Home = () => {
     }
   }, [autoClick, humanMove, Goal, goal, iterateBoard, setSearchCount, start]);
 
+  const [inputNumber, setInputNumber] = useState(0);
+
+  console.log('goal', goal);
+  console.log('start', start);
+  const onSearchClick = () => {
+    if (goal === 0) {
+      iterateBoard(humanMove);
+      setSearchCount(0);
+      iterateBoard(Goal);
+    }
+  };
   if (maze[8][8] === 3) {
     newMaze[8][8] = 7;
     setMaze(newMaze);
@@ -43,6 +55,14 @@ const Home = () => {
     return `rotate${(angle - 1) * 90}`;
   };
 
+  console.log(inputNumber);
+  const selectNumberMaze = () => {
+    for (let z = 0; z < inputNumber; z++) {
+      onSearchClick();
+    }
+  };
+
+  console.table(maze);
   return (
     <div className={styles.container}>
       <div className={styles.board}>
@@ -68,6 +88,14 @@ const Home = () => {
       <button className={styles.search} onClick={onSearchClickkey}>
         探索
       </button>
+      <button className={styles.select} onClick={selectNumberMaze}>
+        入力した〇手目を表示
+      </button>
+      <input
+        type="number"
+        value={inputNumber}
+        onChange={(e) => setInputNumber(Number(e.target.value))}
+      />
     </div>
   );
 };
