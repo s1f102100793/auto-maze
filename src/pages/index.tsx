@@ -30,7 +30,7 @@ const Home = () => {
       };
       const interval = setInterval(() => {
         onSearchClick();
-      }, 600);
+      }, 200);
       return () => clearInterval(interval);
     }
   }, [autoClick, humanMove, Goal, goal, iterateBoard, setSearchCount, start]);
