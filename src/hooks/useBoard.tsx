@@ -1,17 +1,26 @@
 import { useState } from 'react';
 
 export const useBoard = () => {
-  const [maze, setMaze] = useState([
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ]);
+  const [mazeSize, setMazeSize] = useState(9); // デフォルトのサイズは9（9x9の迷路）
+
+  const generateMaze = (size: number) => {
+    const maze = [];
+    for (let i = 0; i < size; i++) {
+      maze.push(Array(size).fill(0));
+    }
+    return maze;
+  };
+
+  const [maze, setMaze] = useState(generateMaze(mazeSize));
+
+  const handleMazeSizeChange = (newSize: number) => {
+    if (newSize % 2 === 0) {
+      // サイズが常に奇数になるようにします
+      newSize++;
+    }
+    setMazeSize(newSize);
+    setMaze(generateMaze(newSize));
+  };
 
   const directions: number[][] = [
     [-1, 0],
@@ -29,5 +38,5 @@ export const useBoard = () => {
     }
   };
 
-  return { maze, setMaze, directions, newMaze, iterateBoard };
+  return { maze, setMaze, directions, newMaze, iterateBoard, handleMazeSizeChange, mazeSize };
 };

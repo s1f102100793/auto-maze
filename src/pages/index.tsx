@@ -17,7 +17,7 @@ const Home = () => {
     setMaze,
     human,
   } = useGame();
-  const { iterateBoard } = useBoard();
+  const { iterateBoard, handleMazeSizeChange, mazeSize } = useBoard();
   // onSearchClick関数をuseEffectの外で定義する
   useEffect(() => {
     if (autoClick) {
@@ -82,6 +82,14 @@ const Home = () => {
           });
         })}
       </div>
+      <label>
+        迷路のサイズ（奇数）:
+        <input
+          type="number"
+          value={mazeSize}
+          onChange={(e) => handleMazeSizeChange(parseInt(e.target.value, 10))}
+        />
+      </label>
       <button className={styles.generation} onClick={onClick}>
         生成
       </button>
