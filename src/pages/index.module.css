@@ -18,7 +18,7 @@
   align-items: center;
   width: 556px;
   height: 556px;
-  background-color: #d5e5f2;
+  background-color: #fff;
   border: double 8px #303030;
 }
 
@@ -30,6 +30,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .cell-white {
@@ -135,6 +136,49 @@
   background-color: #e6e6f2;
 }
 
+.text-box {
+  width: 400px;
+  height: 80px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: slide-in 1s forwards;
+  opacity: 0;
+  position: absolute;
+  top: 60%;
+  right: 40%;
+  border-radius: 10px;
+  border: double 8px #303030;
+}
+
+@keyframes slide-in {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.pikachuget {
+  margin-left: 15px;
+  font-family: Pokemon, sans-serif;
+  font-size: 37px;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 2s steps(30) forwards;
+  position: relative;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
 .pikachu {
   width: 60px;
   height: 60px;
@@ -166,8 +210,8 @@
 
 @media (max-width: 450px) {
   .board {
-    width: calc(556px * 6.5 / 10);
-    height: calc(556px * 6.5 / 10);
+    width: calc(555px * 6.5 / 10);
+    height: calc(555px * 6.5 / 10);
     border: double calc(8px * 6.5 / 10) #303030;
   }
 
@@ -202,5 +246,20 @@
   .word {
     font-size: calc(30px * 6.5 / 10);
     width: calc(300px * 6.5 / 10);
+  }
+
+  .text-box {
+    width: calc(400px * 6.5 / 10);
+    height: calc(80px * 6.5 / 10);
+    top: 58%;
+    right: 25%;
+    border-radius: calc(10px * 6.5 / 10);
+    border: double calc(8px * 6.5 / 10) #303030;
+  }
+
+  .pikachuget {
+    padding-left: 4px;
+    margin-left: calc(10px * 6.5 / 10);
+    font-size: calc(37px * 6.5 / 10);
   }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useBoard } from '../hooks/useBoard';
 import { useGame } from '../hooks/useGame';
 import styles from './index.module.css';
@@ -60,6 +60,18 @@ const Home = () => {
   //   }
   // };
 
+  const pikachuGetAction = (yIndex: number, xIndex: number, cellStyle: string, col: number) => {
+    return (
+      <div key={`cell-${yIndex}-${xIndex}`} className={cellStyle}>
+        {col === 7 && (
+          <div className={styles['text-box']}>
+            <h1 className={styles.pikachuget}>ピカチュウ キミにきめた！</h1>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -78,7 +90,7 @@ const Home = () => {
                 : col === 7
                 ? styles.satoshipikachu
                 : styles['cell-white'];
-            return <div key={`cell-${yIndex}-${xIndex}`} className={cellStyle} />;
+            return pikachuGetAction(yIndex, xIndex, cellStyle, col);
           });
         })}
       </div>
