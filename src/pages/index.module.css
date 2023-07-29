@@ -6,6 +6,9 @@
   height: 100vh;
   min-height: 100vh;
   padding: 0 0.5rem;
+  background-color: #aad1e2;
+
+  /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuDW7-52YzXwaoLNmDZVJSmGuZZv5zp7FVVA&usqp=CAU://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOVTfQKkUFq0YOizqSNhytqlsrCCSn8zYCXw&usqp=CAU"); */
 }
 
 .board {
@@ -22,18 +25,20 @@
 .cell-white {
   width: 60px;
   height: 60px;
-  border: 1px solid black;
+  border: 1px solid #303030;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .cell-white {
-  background-color: #d5e5f2;
+  /* background-color: #d5e5f2; */
+  background-color: #e6e6f2;
 }
 
 .cell-black {
-  background-color: #06ab9a;
+  /* background-color: #06ab9a; */
+  background-color: #f39ed6;
 }
 
 @font-face {
@@ -51,30 +56,44 @@
   margin-top: 50px;
   font-family: Pokemon, sans-serif;
   font-size: 30px;
+  border-radius: 15px;
+  border: double 8px #303030;
+  background-color: #e6e6f2;
+}
+
+.container h1 {
+  font-family: Pokemon, sans-serif;
+  font-size: 50px;
+  border: double 10px #303030;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #fff;
 }
 
 .goal {
   width: 60px;
   height: 60px;
-  border: 1px solid black;
+  border: 1px solid #303030;
   display: flex;
   align-items: center;
   background: url('~/assets/images/satoshi.png') no-repeat;
   background-size: 50%;
   background-position: 50% 50%;
   justify-content: center;
+  background-color: #e6e6f2;
 }
 
 .satoshipikachu {
   width: 60px;
   height: 60px;
-  border: 1px solid black;
+  border: 1px solid #303030;
   display: flex;
   align-items: center;
   background: url('~/assets/images/pikachu-satoshi.png') no-repeat;
   background-size: 100%;
   background-position: 50% 50%;
   justify-content: center;
+  background-color: #e6e6f2;
 }
 
 .pikachu {
@@ -84,9 +103,10 @@
   background: url('~/assets/images/pikachu.png') no-repeat;
   background-size: 200%;
   background-position: 50% 50%;
-  border: 1px solid black;
+  border: 1px solid #303030;
   align-items: center;
   justify-content: center;
+  background-color: #e6e6f2;
 }
 
 .rotate0 {
@@ -119,7 +139,7 @@
   .pikachu {
     width: calc(60px * 6.5 / 10);
     height: calc(60px * 6.5 / 10);
-    border: calc(1px * 6.5 / 10) solid black;
+    border: calc(1px * 6.5 / 10) solid #303030;
   }
 
   .generation,
@@ -129,5 +149,11 @@
     height: calc(80px * 6.5 / 10);
     margin-top: calc(50px * 6.5 / 10);
     font-size: calc(30px * 6.5 / 10);
+  }
+
+  .container h1 {
+    font-size: calc(50px * 6.5 / 10);
+    border-radius: calc(10px * 6.5 / 10);
+    padding: calc(10px * 6.5 / 10);
   }
 }

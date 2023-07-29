@@ -63,6 +63,7 @@ const Home = () => {
   console.table(maze);
   return (
     <div className={styles.container}>
+      <h1>サトシにたどりつけ！</h1>
       <div className={styles.board}>
         {maze.map((row, yIndex) => {
           return row.map((col, xIndex) => {
