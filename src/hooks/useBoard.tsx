@@ -14,7 +14,7 @@ export const useBoard = () => {
     }
     return maze;
   };
-  
+
   const [maze, setMaze] = useState(generateMaze(mazeSize));
 
   useEffect(() => {
