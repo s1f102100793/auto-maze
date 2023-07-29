@@ -192,6 +192,6 @@
   }
 
   .animated-heading {
-    font-size: calc(50px * 6.5 / 10);
+    font-size: 30px;
   }
 }
