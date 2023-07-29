@@ -119,7 +119,6 @@
   .board {
     width: calc(540px * 6.5 / 10);
     height: calc(540px * 6.5 / 10);
-    border: calc(2px * 6.5 / 10) solid black;
   }
 
   .cell-white,
@@ -129,7 +128,7 @@
   .pikachu {
     width: calc(60px * 6.5 / 10);
     height: calc(60px * 6.5 / 10);
-    border: calc(2px * 6.5 / 10) solid black;
+    border: calc(1px * 6.5 / 10) solid black;
   }
 
   .generation,
