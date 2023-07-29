@@ -16,9 +16,10 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  width: 540px;
-  height: 540px;
+  width: 556px;
+  height: 556px;
   background-color: #d5e5f2;
+  border: double 8px #303030;
 }
 
 .cell-black,
@@ -37,8 +38,9 @@
 }
 
 .cell-black {
-  /* background-color: #06ab9a; */
-  background-color: #f39ed6;
+  background-color: #06ab9a;
+
+  /* background-color: #f39ed6; */
 }
 
 @font-face {
@@ -164,8 +166,9 @@
 
 @media (max-width: 450px) {
   .board {
-    width: calc(540px * 6.5 / 10);
-    height: calc(540px * 6.5 / 10);
+    width: calc(556px * 6.5 / 10);
+    height: calc(556px * 6.5 / 10);
+    border: double calc(8px * 6.5 / 10) #303030;
   }
 
   .cell-white,

@@ -33,7 +33,7 @@ const Home = () => {
     return () => clearInterval(interval);
   }, [humanMove, Goal, goal, iterateBoard, setSearchCount, start]);
 
-  const [inputNumber, setInputNumber] = useState(0);
+  // const [inputNumber, setInputNumber] = useState(0);
 
   console.log('goal', goal);
   console.log('start', start);
@@ -53,12 +53,12 @@ const Home = () => {
     return `rotate${(angle - 1) * 90}`;
   };
 
-  console.log(inputNumber);
-  const selectNumberMaze = () => {
-    for (let z = 0; z < inputNumber; z++) {
-      onSearchClick();
-    }
-  };
+  // console.log(inputNumber);
+  // const selectNumberMaze = () => {
+  //   for (let z = 0; z < inputNumber; z++) {
+  //     onSearchClick();
+  //   }
+  // };
 
   return (
     <div className={styles.container}>
