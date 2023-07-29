@@ -89,10 +89,10 @@ const Home = () => {
         />
       </label> */}
       <button className={styles.generation} onClick={onClick}>
-        #*,P")
+        はじめから
       </button>
       <button className={styles.search} onClick={onSearchClickkey}>
-        #S5
+        さがす
       </button>
       {/* <button className={styles.select} onClick={selectNumberMaze}>
         入力した〇手目を表示

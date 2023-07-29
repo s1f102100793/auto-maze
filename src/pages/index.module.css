@@ -38,14 +38,7 @@
 
 @font-face {
   font-family: Pokemon;
-  src: url('../../fonts/PokemonGbJapanHrregular-Bq93.ttf') format('truetype');
-
-  /* url('../../fonts/PokemonGbJapanKt-8Rw2.ttf') format('truetype'),
-    url('../../fonts/PokemonGb-RAeo.ttf') format('truetype'); 
-
-  /* src: url('../../fonts/pkmn_r.ttf') format('truetype'),
-    url('../../fonts/pkmn_s.ttf') format('truetype'),
-    url('../../fonts/pkmn_w.ttf') format('truetype'); */
+  src: url('../../fonts/RsFont-Regular.ttf') format('truetype');
 }
 
 .generation,
