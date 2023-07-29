@@ -20,20 +20,18 @@ const Home = () => {
   const { iterateBoard, handleMazeSizeChange, mazeSize } = useBoard();
   // onSearchClick関数をuseEffectの外で定義する
   useEffect(() => {
-    if (autoClick) {
-      const onSearchClick = () => {
-        if (goal === 0 && start === 1) {
-          iterateBoard(humanMove);
-          setSearchCount(0);
-          iterateBoard(Goal);
-        }
-      };
-      const interval = setInterval(() => {
-        onSearchClick();
-      }, 180);
-      return () => clearInterval(interval);
-    }
-  }, [autoClick, humanMove, Goal, goal, iterateBoard, setSearchCount, start]);
+    const onSearchClick = () => {
+      if (goal === 0 && start === 1) {
+        iterateBoard(humanMove);
+        setSearchCount(0);
+        iterateBoard(Goal);
+      }
+    };
+    const interval = setInterval(() => {
+      onSearchClick();
+    }, 180);
+    return () => clearInterval(interval);
+  }, [humanMove, Goal, goal, iterateBoard, setSearchCount, start]);
 
   const [inputNumber, setInputNumber] = useState(0);
 
@@ -82,28 +80,28 @@ const Home = () => {
           });
         })}
       </div>
-      <label>
+      {/* <label>
         迷路のサイズ（奇数）:
         <input
           type="number"
           value={mazeSize}
           onChange={(e) => handleMazeSizeChange(parseInt(e.target.value, 10))}
         />
-      </label>
+      </label> */}
       <button className={styles.generation} onClick={onClick}>
         生成
       </button>
       <button className={styles.search} onClick={onSearchClickkey}>
         探索
       </button>
-      <button className={styles.select} onClick={selectNumberMaze}>
+      {/* <button className={styles.select} onClick={selectNumberMaze}>
         入力した〇手目を表示
       </button>
       <input
         type="number"
         value={inputNumber}
         onChange={(e) => setInputNumber(Number(e.target.value))}
-      />
+      /> */}
     </div>
   );
 };
