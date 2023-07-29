@@ -18,9 +18,33 @@
   background-color: #d5e5f2;
 }
 
+/* スマートフォン用のスタイル（画面幅450px以下） */
+@media (max-width: 450px) {
+  .board {
+    width: calc(540px * 7 / 10);
+    height: calc(540px * 7 / 10);
+  }
+
+  .cell-white,
+  .cell-black,
+  .goal,
+  .satoshipikachu,
+  .pikachu {
+    width: calc(60px * 7 / 10);
+    height: calc(60px * 7 / 10);
+    border: calc(1px * 7 / 10) solid black;
+  }
+
+  .generation,
+  .search,
+  .select {
+    width: calc(300px * 7 / 10);
+    height: calc(80px * 7 / 10);
+    margin-top: calc(50px * 7 / 10);
+  }
+}
+
 .cell-white {
-  width: 60px;
-  height: 60px;
   border: 1px solid black;
   display: flex;
   align-items: center;
@@ -29,8 +53,6 @@
 }
 
 .cell-black {
-  width: 60px;
-  height: 60px;
   border: 1px solid black;
   display: flex;
   align-items: center;
@@ -41,30 +63,19 @@
 .generation {
   position: relative;
   content: '';
-  width: 300px;
-  height: 80px;
-  margin-top: 50px;
 }
 
 .search {
   position: relative;
   content: '';
-  width: 300px;
-  height: 80px;
-  margin-top: 10px;
 }
 
 .select {
   position: relative;
   content: '';
-  width: 300px;
-  height: 80px;
-  margin-top: 10px;
 }
 
 .goal {
-  width: 60px;
-  height: 60px;
   border: 1px solid black;
   display: flex;
   align-items: center;
@@ -75,8 +86,6 @@
 }
 
 .satoshipikachu {
-  width: 60px;
-  height: 60px;
   border: 1px solid black;
   display: flex;
   align-items: center;
@@ -87,8 +96,6 @@
 }
 
 .pikachu {
-  width: 60px;
-  height: 60px;
   content: '';
   background: url('~/assets/images/pikachu.png') no-repeat;
   background-size: 200%;

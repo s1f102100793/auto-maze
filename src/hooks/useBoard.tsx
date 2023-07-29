@@ -1,17 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useBoard = () => {
-  const [mazeSize, setMazeSize] = useState(9); // デフォルトのサイズは9（9x9の迷路）
+  const [mazeSize, setMazeSize] = useState(9);
 
   const generateMaze = (size: number) => {
     const maze = [];
     for (let i = 0; i < size; i++) {
-      maze.push(Array(size).fill(0));
+      const row = [];
+      for (let j = 0; j < size; j++) {
+        row.push(0);
+      }
+      maze.push(row);
     }
     return maze;
   };
-
+  
   const [maze, setMaze] = useState(generateMaze(mazeSize));
+
+  useEffect(() => {
+    setMaze(generateMaze(mazeSize));
+  }, [mazeSize]);
 
   const handleMazeSizeChange = (newSize: number) => {
     if (newSize % 2 === 0) {
@@ -19,7 +27,6 @@ export const useBoard = () => {
       newSize++;
     }
     setMazeSize(newSize);
-    setMaze(generateMaze(newSize));
   };
 
   const directions: number[][] = [
