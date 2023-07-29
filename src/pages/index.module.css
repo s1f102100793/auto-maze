@@ -210,8 +210,8 @@
 
 @media (max-width: 450px) {
   .board {
-    width: calc(555px * 6.5 / 10);
-    height: calc(555px * 6.5 / 10);
+    width: calc(556px * 6.5 / 10);
+    height: calc(556px * 6.5 / 10);
     border: double calc(8px * 6.5 / 10) #303030;
   }
 
