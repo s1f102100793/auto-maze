@@ -1,7 +1,11 @@
+import type { MouseEventHandler } from 'react';
 import { useEffect } from 'react';
+import useSound from 'use-sound';
+import win from '../../assets/movies/win.mp3';
 import { useBoard } from '../hooks/useBoard';
 import { useGame } from '../hooks/useGame';
 import styles from './index.module.css';
+
 const Home = () => {
   const {
     maze,
@@ -59,6 +63,14 @@ const Home = () => {
   //     onSearchClick();
   //   }
   // };
+
+  const WinButton = () => {
+    const [play] = useSound(win);
+    const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
+      play();
+    };
+    return <button onClick={handleClick}>Win</button>;
+  };
 
   const pikachuGetAction = (yIndex: number, xIndex: number, cellStyle: string, col: number) => {
     return (

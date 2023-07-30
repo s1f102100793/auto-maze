@@ -14,7 +14,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [{ "name": "next" }]
+    "plugins": [{ "name": "next" }],
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "next-env.d.ts",
@@ -22,7 +23,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "*.js",
-    ".eslintrc.js"
+    ".eslintrc.js",
+    "/home/iniad/auto-maze/assets/movies/win.wav"
   ],
   "exclude": ["node_modules"]
 }
