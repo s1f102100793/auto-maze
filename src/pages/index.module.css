@@ -288,6 +288,7 @@
   height: 60px;
   position: absolute;
   background-color: #4c4d4f;
+  border-radius: 10%;
 }
 
 .rect0 {
@@ -321,6 +322,7 @@
   background-color: #a24270;
   width: 60px;
   height: 60px;
+  border-radius: 10%;
 }
 
 @media (max-width: 450px) {
