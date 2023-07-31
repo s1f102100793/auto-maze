@@ -39,7 +39,10 @@
 }
 
 .cell-black {
-  background-color: #06ab9a;
+  justify-content: center;
+  background: url('~/assets/images/rock.png') no-repeat;
+  background-size: 100%;
+  background-position: 50% 50%;
 
   /* background-color: #f39ed6; */
 }
