@@ -11,7 +11,7 @@
   /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuDW7-52YzXwaoLNmDZVJSmGuZZv5zp7FVVA&usqp=CAU://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOVTfQKkUFq0YOizqSNhytqlsrCCSn8zYCXw&usqp=CAU"); */
 }
 
-.board {
+.board0 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -20,6 +20,21 @@
   height: 556px;
   background-color: #fff;
   border: double 8px #303030;
+  background-image: url('~/assets/images/tuti.png');
+  background-repeat: repeat;
+}
+
+.board1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 556px;
+  height: 556px;
+  background-color: #fff;
+  border: double 8px #303030;
+  background-image: url('~/assets/images/kusa.jpeg');
+  background-repeat: repeat;
 }
 
 .cell-black,
@@ -35,11 +50,28 @@
 
 .cell-white {
   /* background-color: #d5e5f2; */
-  background-color: #e6e6f2;
 }
 
-.cell-black {
-  background-color: #06ab9a;
+.cell-black0 {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #303030;
+  justify-content: center;
+  background: url('~/assets/images/rock.png') no-repeat;
+  background-size: 100%;
+  background-position: 50% 50%;
+
+  /* background-color: #f39ed6; */
+}
+
+.cell-black1 {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #303030;
+  justify-content: center;
+  background: url('~/assets/images/tree.png') no-repeat;
+  background-size: 100%;
+  background-position: 50% 50%;
 
   /* background-color: #f39ed6; */
 }
@@ -120,7 +152,6 @@
   background-size: 50%;
   background-position: 50% 50%;
   justify-content: center;
-  background-color: #e6e6f2;
 }
 
 .satoshipikachu {
@@ -133,7 +164,6 @@
   background-size: 100%;
   background-position: 50% 50%;
   justify-content: center;
-  background-color: #e6e6f2;
 }
 
 .text-box {
@@ -189,7 +219,6 @@
   border: 1px solid #303030;
   align-items: center;
   justify-content: center;
-  background-color: #e6e6f2;
 }
 
 .rotate0 {
