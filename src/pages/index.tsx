@@ -17,6 +17,7 @@ const Home = () => {
     newMaze,
     setMaze,
     human,
+    boardPettern,
   } = useGame();
 
   const { iterateBoard, handleMazeSizeChange, mazeSize } = useBoard();
@@ -79,7 +80,7 @@ const Home = () => {
       <div className={styles.header}>
         <h1 className={styles['animated-heading']}>サトシにたどりつけ！</h1>
       </div>
-      <div className={styles.board}>
+      <div className={styles[`board${boardPettern}`]}>
         {maze.map((row, yIndex) => {
           return row.map((col, xIndex) => {
             const cellStyle =
