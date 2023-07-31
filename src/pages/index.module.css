@@ -145,9 +145,9 @@
   justify-content: center;
   animation: slide-in 1s forwards;
   opacity: 0;
-  position: relative;
-  bottom: 80%;
-  right: 500%;
+  position: absolute;
+  top: 60%;
+  right: 40%;
   border-radius: 10px;
   border: double 8px #303030;
 }
@@ -251,6 +251,8 @@
   .text-box {
     width: 280px;
     height: calc(80px * 6.5 / 10);
+    top: 58%;
+    right: 25%;
     border-radius: calc(10px * 6.5 / 10);
     border: double calc(8px * 6.5 / 10) #303030;
   }

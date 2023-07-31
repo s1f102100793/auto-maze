@@ -1,7 +1,4 @@
-import type { MouseEventHandler } from 'react';
 import { useEffect } from 'react';
-import useSound from 'use-sound';
-import win from '../../assets/movies/win.mp3';
 import { useBoard } from '../hooks/useBoard';
 import { useGame } from '../hooks/useGame';
 import styles from './index.module.css';
@@ -11,7 +8,7 @@ const Home = () => {
     maze,
     onClick,
     onSearchClickkey,
-    autoClick,
+    // autoClick,
     goal,
     humanMove,
     Goal,
@@ -21,8 +18,12 @@ const Home = () => {
     setMaze,
     human,
   } = useGame();
-  const { iterateBoard, handleMazeSizeChange, mazeSize } = useBoard();
-  // onSearchClick関数をuseEffectの外で定義する
+  const {
+    iterateBoard,
+    //  handleMazeSizeChange,
+    // mazeSize,
+  } = useBoard();
+
   useEffect(() => {
     const onSearchClick = () => {
       if (goal === 0 && start === 1) {
@@ -37,17 +38,9 @@ const Home = () => {
     return () => clearInterval(interval);
   }, [humanMove, Goal, goal, iterateBoard, setSearchCount, start]);
 
-  // const [inputNumber, setInputNumber] = useState(0);
-
   console.log('goal', goal);
   console.log('start', start);
-  const onSearchClick = () => {
-    if (goal === 0) {
-      iterateBoard(humanMove);
-      setSearchCount(0);
-      iterateBoard(Goal);
-    }
-  };
+
   if (maze[8][8] === 3) {
     newMaze[8][8] = 7;
     setMaze(newMaze);
@@ -55,21 +48,6 @@ const Home = () => {
 
   const getRotationClass = (angle: number) => {
     return `rotate${(angle - 1) * 90}`;
-  };
-
-  // console.log(inputNumber);
-  // const selectNumberMaze = () => {
-  //   for (let z = 0; z < inputNumber; z++) {
-  //     onSearchClick();
-  //   }
-  // };
-
-  const WinButton = () => {
-    const [play] = useSound(win);
-    const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
-      play();
-    };
-    return <button onClick={handleClick}>Win</button>;
   };
 
   const pikachuGetAction = (yIndex: number, xIndex: number, cellStyle: string, col: number) => {
