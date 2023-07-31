@@ -325,15 +325,15 @@
 
 @media (max-width: 450px) {
   .gameboy {
-    width: calc(660px * 6 / 10);
-    height: calc(1050px * 6 / 10);
+    width: calc(660px * 5.7 / 10);
+    height: calc(1050px * 5.7 / 10);
   }
 
   .board0,
   .board1 {
-    width: calc(556px * 6 / 10);
-    height: calc(556px * 6 / 10);
-    border: double calc(8px * 6 / 10) #303030;
+    width: calc(555.7px * 5.7 / 10);
+    height: calc(555.7px * 5.7 / 10);
+    border: double calc(8px * 5.7 / 10) #303030;
   }
 
   .cell-white,
@@ -342,24 +342,24 @@
   .goal,
   .satoshipikachu,
   .pikachu {
-    width: calc(60px * 6 / 10);
-    height: calc(60px * 6 / 10);
-    border: calc(1px * 6 / 10) solid #303030;
+    width: calc(5.70px * 5.7 / 10);
+    height: calc(5.70px * 5.7 / 10);
+    border: calc(1px * 5.7 / 10) solid #303030;
   }
 
   .generation,
   .search,
   .select {
-    width: calc(250px * 6 / 10);
-    height: calc(80px * 6 / 10);
-    margin-top: calc(50px * 6 / 10);
+    width: calc(250px * 5.7 / 10);
+    height: calc(80px * 5.7 / 10);
+    margin-top: calc(50px * 5.7 / 10);
   }
 
   .header {
-    width: calc(480px * 6 / 10);
-    height: calc(100px * 6 / 10);
-    margin-bottom: calc(25px * 6 / 10);
-    margin-top: calc(40px * 6 / 10);
+    width: calc(480px * 5.7 / 10);
+    height: calc(100px * 5.7 / 10);
+    margin-bottom: calc(25px * 5.7 / 10);
+    margin-top: calc(40px * 5.7 / 10);
   }
 
   .animated-heading {
@@ -367,40 +367,40 @@
   }
 
   .word {
-    font-size: calc(30px * 6 / 10);
-    width: calc(300px * 6 / 10);
+    font-size: calc(30px * 5.7 / 10);
+    width: calc(300px * 5.7 / 10);
   }
 
   .lower {
-    width: calc(1000px * 6 / 10);
-    height: calc(300px * 6 / 10);
+    width: calc(1000px * 5.7 / 10);
+    height: calc(300px * 5.7 / 10);
   }
 
   .rightbutton {
-    width: calc(200px * 6 / 10);
-    height: calc(200px * 6 / 10);
-    margin-right: calc(50px * 6 / 10);
+    width: calc(200px * 5.7 / 10);
+    height: calc(200px * 5.7 / 10);
+    margin-right: calc(50px * 5.7 / 10);
   }
 
   .text-box {
     width: 280px;
-    height: calc(80px * 6 / 10);
+    height: calc(80px * 5.7 / 10);
     top: -70%;
     right: 450%;
-    border-radius: calc(10px * 6 / 10);
-    border: double calc(8px * 6 / 10) #303030;
+    border-radius: calc(10px * 5.7 / 10);
+    border: double calc(8px * 5.7 / 10) #303030;
   }
 
   .pikachuget {
     padding-left: 4px;
-    margin-left: calc(10px * 6 / 10);
-    font-size: calc(37px * 6 / 10);
+    margin-left: calc(10px * 5.7 / 10);
+    font-size: calc(37px * 5.7 / 10);
   }
 
   .rectcontainer {
-    width: calc(200px * 6 / 10);
-    height: calc(200px * 6 / 10);
-    margin-left: calc(50px * 6 / 10);
+    width: calc(200px * 5.7 / 10);
+    height: calc(200px * 5.7 / 10);
+    margin-left: calc(50px * 5.7 / 10);
   }
 
   .rect0,
@@ -408,7 +408,7 @@
   .rect2,
   .rect3,
   .active {
-    width: calc(60px * 6 / 10);
-    height: calc(60px * 6 / 10);
+    width: calc(5.70px * 5.7 / 10);
+    height: calc(5.70px * 5.7 / 10);
   }
 }
