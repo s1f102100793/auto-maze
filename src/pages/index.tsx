@@ -38,9 +38,6 @@ const Home = () => {
     return () => clearInterval(interval);
   }, [humanMove, Goal, goal, iterateBoard, setSearchCount, start]);
 
-  console.log('goal', goal);
-  console.log('start', start);
-
   if (maze[8][8] === 3) {
     newMaze[8][8] = 7;
     setMaze(newMaze);
@@ -58,6 +55,19 @@ const Home = () => {
             <h1 className={styles.pikachuget}>ピカチュウ キミにきめた！</h1>
           </div>
         )}
+      </div>
+    );
+  };
+
+  console.log('human', human)
+
+  const CrossButton = () => {
+    return (
+      <div className={styles.rectcontainer}>
+        <div className={`${styles.rect1} ${human === 1 ? styles.active : ''}`} />
+        <div className={`${styles.rect2} ${human === 2 ? styles.active : ''}`} />
+        <div className={`${styles.rect3} ${human === 3 ? styles.active : ''}`} />
+        <div className={`${styles.rect0} ${human === 0 ? styles.active : ''}`} />
       </div>
     );
   };
@@ -84,28 +94,15 @@ const Home = () => {
           });
         })}
       </div>
-      {/* <label>
-        迷路のサイズ（奇数）:
-        <input
-          type="number"
-          value={mazeSize}
-          onChange={(e) => handleMazeSizeChange(parseInt(e.target.value, 10))}
-        />
-      </label> */}
-      <button className={styles.generation} onClick={onClick}>
-        <h1 className={styles.word}>はじめから</h1>
-      </button>
-      <button className={styles.search} onClick={onSearchClickkey}>
-        <h1 className={styles.word}>さがす</h1>
-      </button>
-      {/* <button className={styles.select} onClick={selectNumberMaze}>
-        入力した〇手目を表示
-      </button>
-      <input
-        type="number"
-        value={inputNumber}
-        onChange={(e) => setInputNumber(Number(e.target.value))}
-      /> */}
+      <div className={styles.lower}>
+        <CrossButton />
+        <button className={styles.generation} onClick={onClick}>
+          <h1 className={styles.word}>はじめから</h1>
+        </button>
+        <button className={styles.search} onClick={onSearchClickkey}>
+          <h1 className={styles.word}>さがす</h1>
+        </button>
+      </div>
     </div>
   );
 };
