@@ -11,6 +11,16 @@
   /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuDW7-52YzXwaoLNmDZVJSmGuZZv5zp7FVVA&usqp=CAU://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOVTfQKkUFq0YOizqSNhytqlsrCCSn8zYCXw&usqp=CAU"); */
 }
 
+.gameboy {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 660px;
+  height: 1000px;
+  background-color: #303030;
+}
+
 .board {
   display: flex;
   flex-wrap: wrap;
@@ -96,6 +106,7 @@
   border: double 10px #303030;
   border-radius: 10px;
   padding: 10px;
+  margin-top: 50px;
 }
 
 @keyframes fade-in-out {

@@ -74,6 +74,7 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.gameboy}>
       <div className={styles.header}>
         <h1 className={styles['animated-heading']}>サトシにたどりつけ！</h1>
       </div>
@@ -102,6 +103,7 @@ const Home = () => {
         <button className={styles.search} onClick={onSearchClickkey}>
           <h1 className={styles.word}>さがす</h1>
         </button>
+        </div>
       </div>
     </div>
   );
