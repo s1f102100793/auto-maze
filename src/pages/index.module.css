@@ -331,8 +331,8 @@
 
   .board0,
   .board1 {
-    width: calc(555.7px * 5.7 / 10);
-    height: calc(555.7px * 5.7 / 10);
+    width: calc(556px * 5.7 / 10);
+    height: calc(556px * 5.7 / 10);
     border: double calc(8px * 5.7 / 10) #303030;
   }
 
@@ -342,8 +342,8 @@
   .goal,
   .satoshipikachu,
   .pikachu {
-    width: calc(5.70px * 5.7 / 10);
-    height: calc(5.70px * 5.7 / 10);
+    width: calc(60px * 5.7 / 10);
+    height: calc(60px * 5.7 / 10);
     border: calc(1px * 5.7 / 10) solid #303030;
   }
 
@@ -408,7 +408,7 @@
   .rect2,
   .rect3,
   .active {
-    width: calc(5.70px * 5.7 / 10);
-    height: calc(5.70px * 5.7 / 10);
+    width: calc(60px * 5.7 / 10);
+    height: calc(60px * 5.7 / 10);
   }
 }
