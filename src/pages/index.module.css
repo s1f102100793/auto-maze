@@ -17,8 +17,10 @@
   justify-content: center;
   align-items: center;
   width: 660px;
-  height: 1000px;
-  background-color: #c3bdba;
+  height: 1100px;
+  background-color: #d4d4d4;
+  border-radius: 20px 20px 100px 20px;
+  border: 7px solid#CAC8C7;
 }
 
 .board0 {
@@ -88,9 +90,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #c3bdba;
   width: 1000px;
   height: 300px;
+  border: 7px #CAC8C7;
 }
 
 .rightbutton {
@@ -139,7 +141,7 @@
   width: 480px;
   height: 100px;
   background-color: #fff;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   border: double 10px #303030;
   border-radius: 10px;
   margin-top: 50px;
@@ -271,6 +273,8 @@
   flex-wrap: wrap;
   position: relative;
   margin-left: 50px;
+  background-color: #c8c8ca;
+  border-radius: 50%;
 }
 
 .rect0,
@@ -283,29 +287,30 @@
   width: 60px;
   height: 60px;
   position: absolute;
-  background-color: #fff;
+  background-color: #4c4d4f;
 }
 
 .rect0 {
-  top: 0;
+  top: 5%;
   right: 50%;
   transform: translateX(50%);
 }
 
 .rect1 {
-  right: 0;
+  right: 5%;
   top: 50%;
   transform: translateY(-50%);
 }
 
 .rect2 {
-  top: 100%;
+  top: 95%;
   right: 50%;
   transform: translate(50%, -100%);
 }
 
 .rect3 {
   top: 50%;
+  right: 65%;
   transform: translateY(-50%);
 }
 
@@ -313,7 +318,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #aaa;
+  background-color: #a24270;
   width: 60px;
   height: 60px;
 }
@@ -321,7 +326,7 @@
 @media (max-width: 450px) {
   .gameboy {
     width: calc(660px * 6 / 10);
-    height: calc(1000px * 6 / 10);
+    height: calc(1050px * 6 / 10);
   }
 
   .board0,
@@ -353,8 +358,8 @@
   .header {
     width: calc(480px * 6 / 10);
     height: calc(100px * 6 / 10);
-    margin-bottom: calc(50px * 6 / 10);
-    margin-top: calc(50px * 6 / 10);
+    margin-bottom: calc(25px * 6 / 10);
+    margin-top: calc(40px * 6 / 10);
   }
 
   .animated-heading {
