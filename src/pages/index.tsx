@@ -4,6 +4,7 @@ import { useGame } from '../hooks/useGame';
 import styles from './index.module.css';
 const Home = () => {
   const {
+    blockPettern,
     maze,
     onClick,
     onSearchClickkey,
@@ -17,6 +18,7 @@ const Home = () => {
     setMaze,
     human,
   } = useGame();
+
   const { iterateBoard, handleMazeSizeChange, mazeSize } = useBoard();
   // onSearchClick関数をuseEffectの外で定義する
   useEffect(() => {
@@ -82,7 +84,7 @@ const Home = () => {
           return row.map((col, xIndex) => {
             const cellStyle =
               col === 1
-                ? styles['cell-black']
+                ? styles[`cell-black${blockPettern}`]
                 : col === 6
                 ? styles['goal']
                 : col === 3

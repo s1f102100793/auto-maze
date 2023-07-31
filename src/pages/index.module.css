@@ -38,9 +38,24 @@
   background-color: #e6e6f2;
 }
 
-.cell-black {
+.cell-black0 {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #303030;
   justify-content: center;
   background: url('~/assets/images/rock.png') no-repeat;
+  background-size: 100%;
+  background-position: 50% 50%;
+
+  /* background-color: #f39ed6; */
+}
+
+.cell-black1 {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #303030;
+  justify-content: center;
+  background: url('~/assets/images/tree.png') no-repeat;
   background-size: 100%;
   background-position: 50% 50%;
 

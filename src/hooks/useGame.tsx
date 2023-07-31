@@ -3,6 +3,7 @@ import { useBoard } from './useBoard';
 let goal = 0;
 let start = 0;
 export const useGame = () => {
+  const [blockPettern, setBlockPettern] = useState(0);
   const { maze, setMaze, directions, newMaze, iterateBoard } = useBoard();
   const Itteme = (y: number, x: number) => {
     if (y % 2 === 1 && x % 2 === 1) {
@@ -32,6 +33,7 @@ export const useGame = () => {
     setHuman(1);
     goal = 0;
     start = 0;
+    setBlockPettern(1 - blockPettern);
   };
   const [human, setHuman] = useState(0);
   const [autoClick, setAutoClick] = useState(false);
@@ -188,5 +190,7 @@ export const useGame = () => {
     newMaze,
     setMaze,
     human,
+    blockPettern,
+    setBlockPettern,
   };
 };
