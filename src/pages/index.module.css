@@ -18,10 +18,10 @@
   align-items: center;
   width: 660px;
   height: 1000px;
-  background-color: #303030;
+  background-color: #c3bdba;
 }
 
-.board {
+.board0 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -30,6 +30,21 @@
   height: 556px;
   background-color: #fff;
   border: double 8px #303030;
+  background-image: url('~/assets/images/tuti.png');
+  background-repeat: repeat;
+}
+
+.board1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 556px;
+  height: 556px;
+  background-color: #fff;
+  border: double 8px #303030;
+  background-image: url('~/assets/images/kusa.jpeg');
+  background-repeat: repeat;
 }
 
 .cell-black,
@@ -43,13 +58,26 @@
   position: relative;
 }
 
-.cell-white {
-  /* background-color: #d5e5f2; */
-  background-color: #e6e6f2;
+.cell-black0 {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #303030;
+  justify-content: center;
+  background: url('~/assets/images/rock.png') no-repeat;
+  background-size: 100%;
+  background-position: 50% 50%;
+
+  /* background-color: #f39ed6; */
 }
 
-.cell-black {
-  background-color: #06ab9a;
+.cell-black1 {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #303030;
+  justify-content: center;
+  background: url('~/assets/images/tree.png') no-repeat;
+  background-size: 100%;
+  background-position: 50% 50%;
 
   /* background-color: #f39ed6; */
 }
@@ -69,10 +97,20 @@
 .lower {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background-color: aliceblue;
   width: 1000px;
   height: 300px;
+}
+
+.rightbutton {
+  background-color: beige;
+  width: 200px;
+  height: 200px;
+  flex-wrap: wrap;
+  left: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .generation,
@@ -139,8 +177,8 @@
   background: url('~/assets/images/satoshi.png') no-repeat;
   background-size: 50%;
   background-position: 50% 50%;
+  background-color: #ffffff50;
   justify-content: center;
-  background-color: #e6e6f2;
 }
 
 .satoshipikachu {
@@ -152,8 +190,8 @@
   background: url('~/assets/images/pikachu-satoshi.png') no-repeat;
   background-size: 100%;
   background-position: 50% 50%;
+  background-color: #ffffff50;
   justify-content: center;
-  background-color: #e6e6f2;
 }
 
 .text-box {
@@ -206,10 +244,10 @@
   background: url('~/assets/images/pikachu.png') no-repeat;
   background-size: 200%;
   background-position: 50% 50%;
+  background-color: #ffffff25;
   border: 1px solid #303030;
   align-items: center;
   justify-content: center;
-  background-color: #e6e6f2;
 }
 
 .rotate0 {

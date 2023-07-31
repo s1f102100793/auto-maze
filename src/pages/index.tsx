@@ -5,6 +5,7 @@ import styles from './index.module.css';
 
 const Home = () => {
   const {
+    blockPettern,
     maze,
     onClick,
     onSearchClickkey,
@@ -17,6 +18,7 @@ const Home = () => {
     newMaze,
     setMaze,
     human,
+    boardPettern,
   } = useGame();
   const {
     iterateBoard,
@@ -24,6 +26,7 @@ const Home = () => {
     // mazeSize,
   } = useBoard();
 
+  // onSearchClick関数をuseEffectの外で定義する
   useEffect(() => {
     const onSearchClick = () => {
       if (goal === 0 && start === 1) {
@@ -59,7 +62,7 @@ const Home = () => {
     );
   };
 
-  console.log('human', human)
+  console.log('human', human);
 
   const CrossButton = () => {
     return (
@@ -75,34 +78,36 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <div className={styles.gameboy}>
-      <div className={styles.header}>
-        <h1 className={styles['animated-heading']}>サトシにたどりつけ！</h1>
-      </div>
-      <div className={styles.board}>
-        {maze.map((row, yIndex) => {
-          return row.map((col, xIndex) => {
-            const cellStyle =
-              col === 1
-                ? styles['cell-black']
-                : col === 6
-                ? styles['goal']
-                : col === 3
-                ? `${styles.pikachu} ${(styles as any)[getRotationClass(human)]}`
-                : col === 7
-                ? styles.satoshipikachu
-                : styles['cell-white'];
-            return pikachuGetAction(yIndex, xIndex, cellStyle, col);
-          });
-        })}
-      </div>
-      <div className={styles.lower}>
-        <CrossButton />
-        <button className={styles.generation} onClick={onClick}>
-          <h1 className={styles.word}>はじめから</h1>
-        </button>
-        <button className={styles.search} onClick={onSearchClickkey}>
-          <h1 className={styles.word}>さがす</h1>
-        </button>
+        <div className={styles.header}>
+          <h1 className={styles['animated-heading']}>サトシにたどりつけ！</h1>
+        </div>
+        <div className={styles[`board${boardPettern}` as keyof typeof styles]}>
+          {maze.map((row, yIndex) => {
+            return row.map((col, xIndex) => {
+              const cellStyle =
+                col === 1
+                  ? styles[`cell-black${blockPettern}` as keyof typeof styles]
+                  : col === 6
+                  ? styles['goal']
+                  : col === 3
+                  ? `${styles.pikachu} ${(styles as any)[getRotationClass(human)]}`
+                  : col === 7
+                  ? styles.satoshipikachu
+                  : styles['cell-white'];
+              return pikachuGetAction(yIndex, xIndex, cellStyle, col);
+            });
+          })}
+        </div>
+        <div className={styles.lower}>
+          <CrossButton />
+          <div className={styles.rightbutton}>
+            <button className={styles.generation} onClick={onClick}>
+              <h1 className={styles.word}>はじめから</h1>
+            </button>
+            <button className={styles.search} onClick={onSearchClickkey}>
+              <h1 className={styles.word}>さがす</h1>
+            </button>
+          </div>
         </div>
       </div>
     </div>
